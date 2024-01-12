@@ -1,0 +1,80 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+vmodexamp_tb
+Z0 !s110 1705045764
+!i10b 1
+!s100 jFdNe=lL:TSfE4<WdE5MZ3
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IDW9Y17lCf2odl^X7=L1Vc0
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/pknad/Documents/EEE333_verilog/class_demo
+Z4 w1705045757
+Z5 8C:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v
+Z6 FC:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v
+!i122 5
+L0 20 12
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1705045764.000000
+!s107 C:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vmodexample
+R0
+!i10b 1
+!s100 P^NnaSaF=FCfN;c<G0K`H2
+R1
+IEE[@W;P<oG3WQb?0CnSFe2
+R2
+R3
+R4
+R5
+R6
+!i122 5
+L0 5 8
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 C:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v|
+R9
+!i113 1
+R10
+R11
+vmodexample1
+R0
+!i10b 1
+!s100 OzJ?QE^nK>JHkPMeIOYmU1
+R1
+IQ3P=n9Rol2;aCoT;UeGNS0
+R2
+R3
+R4
+R5
+R6
+!i122 5
+L0 15 3
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
