@@ -10,23 +10,23 @@ z2
 cModel Technology
 dC:/intelFPGA/20.1
 vmodexamp_tb
-Z0 !s110 1705045764
+Z0 !s110 1705199825
 !i10b 1
 !s100 jFdNe=lL:TSfE4<WdE5MZ3
 Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
 IDW9Y17lCf2odl^X7=L1Vc0
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 Z3 dC:/Users/pknad/Documents/EEE333_verilog/class_demo
-Z4 w1705045757
+Z4 w1705045888
 Z5 8C:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v
 Z6 FC:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v
-!i122 5
+!i122 10
 L0 20 12
 Z7 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z8 !s108 1705045764.000000
+Z8 !s108 1705199825.000000
 !s107 C:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v|
 Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\class_demo\classdemo.v|
 !i113 1
@@ -43,7 +43,7 @@ R3
 R4
 R5
 R6
-!i122 5
+!i122 10
 L0 5 8
 R7
 r1
@@ -66,7 +66,7 @@ R3
 R4
 R5
 R6
-!i122 5
+!i122 10
 L0 15 3
 R7
 r1
