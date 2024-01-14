@@ -1,0 +1,28 @@
+|homework2_2
+F <= F.DB_MAX_OUTPUT_PORT_TYPE
+Fs <= Fs.DB_MAX_OUTPUT_PORT_TYPE
+A => F.IN0
+A => F.IN0
+A => F.IN0
+A => Fs.IN0
+B => F.IN1
+B => F.IN1
+B => Fs.IN0
+B => F.IN1
+C => F.IN1
+C => F.IN1
+C => F.IN1
+C => Fs.IN1
+C => F.IN1
+C => F.IN1
+D => F.IN1
+D => F.IN1
+D => F.IN1
+D => F.IN1
+D => F.IN1
+D => Fs.IN1
+D => Fs.IN1
+D => F.IN1
+D => F.IN1
+
+

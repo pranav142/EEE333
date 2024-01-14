@@ -1,0 +1,19 @@
+C:/Users/pknad/Documents/EEE333_verilog/homework2/homework2.v {1 {vlog -work work -stats=none C:/Users/pknad/Documents/EEE333_verilog/homework2/homework2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module homework2_1
+-- Compiling module homework2_2
+
+Top level modules:
+	homework2_1
+	homework2_2
+
+} {} {}} C:/Users/pknad/Documents/EEE333_verilog/homework2/test_hwk2.v {1 {vlog -work work -stats=none C:/Users/pknad/Documents/EEE333_verilog/homework2/test_hwk2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module test_hwk2_1
+-- Compiling module test_hwk2_2
+
+Top level modules:
+	test_hwk2_1
+	test_hwk2_2
+
+} {} {}}

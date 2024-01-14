@@ -1,4 +1,11 @@
-C:/Users/pknad/Documents/EEE333_verilog/half_adder_tutorial/halfadder_tb.v {1 {vlog -work work -stats=none C:/Users/pknad/Documents/EEE333_verilog/half_adder_tutorial/halfadder_tb.v
+C:/Users/pknad/Documents/EEE333_verilog/half_adder_tutorial/halfadder.v {1 {vlog -work work -stats=none {C:\Users\pknad\Documents\EEE333_verilog\half_adder_tutorial\halfadder.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ha_sum
+
+Top level modules:
+	ha_sum
+
+} {} {}} C:/Users/pknad/Documents/EEE333_verilog/half_adder_tutorial/halfadder_tb.v {1 {vlog -work work -stats=none C:/Users/pknad/Documents/EEE333_verilog/half_adder_tutorial/halfadder_tb.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module addersum_tb
 
