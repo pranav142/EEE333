@@ -1,0 +1,24 @@
+// hello when key is up (1) and intiials when key is down (0)
+
+// 8 bit ascii can represent A - Z, 0-9
+// Hexidecimal segment has 7 segments that can light up
+// when hex seg is set to 0 it turns led on
+module ASCII27Seg(input [7:0] AsciiCode, output reg [6:0] HexSeg);
+	always @ (*) begin 
+		HexSeg = 7'd0;
+		$display("AsciiCode %b", AsciiCode);
+		case (AsciiCode)	
+			// ------Upper Case Letters -----
+			// A
+			8'h41 : HexSeg[3]=1'b1;
+			// B
+			8'h42 : begin 
+				HexSeg[0]=1'b1; HexSeg[1]=1'b1;
+			end
+			// C
+			8'h43 : begin
+				HexSeg[1]=1'b1; HexSeg[2]=1'b1; HexSeg[6]=1'b1;
+			end
+			
+		default : HexSeg=7'b1111111;
+endmodule

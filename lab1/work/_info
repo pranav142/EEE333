@@ -1,0 +1,129 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/pknad/Documents/EEE333_verilog
+vASCII27Seg
+Z0 !s110 1705729037
+!i10b 1
+!s100 Q[R2P^f^VKP2ohD2FjFhI3
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IoiRoI>ARcP3;maJDlk:an3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/pknad/Documents/EEE333_verilog/lab1
+Z4 w1705729033
+Z5 8C:\Users\pknad\Documents\EEE333_verilog\lab1\lab1.v
+Z6 FC:\Users\pknad\Documents\EEE333_verilog\lab1\lab1.v
+!i122 16
+L0 6 244
+Z7 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z8 !s108 1705729037.000000
+!s107 C:\Users\pknad\Documents\EEE333_verilog\lab1\lab1.v|
+Z9 !s90 -reportprogress|300|-work|work|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\lab1\lab1.v|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+n@a@s@c@i@i27@seg
+vascii_numb_tb
+R0
+!i10b 1
+!s100 b3;^U9MWMgT]>:gO?ic:F1
+R1
+Ij9h5]QBZ=6Bj7e9PO2]Tb1
+R2
+R3
+R4
+R5
+R6
+!i122 16
+L0 334 20
+R7
+r1
+!s85 0
+31
+R8
+Z12 !s107 C:\Users\pknad\Documents\EEE333_verilog\lab1\lab1.v|
+R9
+!i113 1
+R10
+R11
+vASCIICodes
+R0
+!i10b 1
+!s100 Z;obS6?0HaNSihFnPY2IU0
+R1
+I]=i]cVZ5Rc?HG21oKmi>U3
+R2
+R3
+R4
+R5
+R6
+!i122 16
+L0 251 37
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@a@s@c@i@i@codes
+vDec27Seg
+R0
+!i10b 1
+!s100 2jVV`YdbO`dOM@YHC=PHV2
+R1
+IEGFK2R0nE;n:_FKOcD`WU3
+R2
+R3
+R4
+R5
+R6
+!i122 16
+L0 289 42
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
+n@dec27@seg
+vdecimal_numb_tb
+R0
+!i10b 1
+!s100 0f=j`K_eaBMRCnj<=?ee^2
+R1
+I^02mmD]HJcGZzd]6^5n:S0
+R2
+R3
+R4
+R5
+R6
+!i122 16
+L0 356 20
+R7
+r1
+!s85 0
+31
+R8
+R12
+R9
+!i113 1
+R10
+R11
