@@ -1,0 +1,247 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/pknad/Documents/EEE333_verilog/errors
+vALU
+Z0 !s110 1707554425
+!i10b 1
+!s100 Ml6<RPmT7M8kJe1F;CI3h3
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I@3U^>E4U4Z`D62V>Z16^F2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+Z3 dC:/Users/pknad/Documents/EEE333_verilog/lab2
+Z4 w1707554423
+Z5 8C:\Users\pknad\Documents\EEE333_verilog\lab2\ALU.v
+Z6 FC:\Users\pknad\Documents\EEE333_verilog\lab2\ALU.v
+!i122 13
+Z7 L0 1 2
+Z8 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z9 !s108 1707554425.000000
+Z10 !s107 C:\Users\pknad\Documents\EEE333_verilog\lab2\ALU.v|
+Z11 !s90 -reportprogress|300|-work|work|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\lab2\ALU.v|
+!i113 1
+Z12 o-work work
+Z13 tCvgOpt 0
+n@a@l@u
+vALU_tb
+R0
+!i10b 1
+!s100 BI@RzkGf`HajiZX@aUm=92
+R1
+I88gD?JEiDzW[FI]MBa9Y@3
+R2
+R3
+w1707553031
+8C:\Users\pknad\Documents\EEE333_verilog\lab2\ALU_tb.v
+FC:\Users\pknad\Documents\EEE333_verilog\lab2\ALU_tb.v
+!i122 14
+R7
+R8
+r1
+!s85 0
+31
+R9
+!s107 C:\Users\pknad\Documents\EEE333_verilog\lab2\ALU_tb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\lab2\ALU_tb.v|
+!i113 1
+R12
+R13
+n@a@l@u_tb
+vcom2s
+R0
+!i10b 1
+!s100 OOTf^BDGkS:X:dfhMN:U50
+R1
+IT_NdSKk?MhUb]gF2XigcQ2
+R2
+R3
+R4
+R5
+R6
+!i122 13
+L0 4 5
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+vFA
+R0
+!i10b 1
+!s100 l@8dfKk10AUf@>1JdY2T^0
+R1
+Ib8_1`1J73lGZM>Ce_ejW_3
+R2
+R3
+R4
+R5
+R6
+!i122 13
+L0 19 6
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+n@f@a
+vFA4
+R0
+!i10b 1
+!s100 ]<iH7A6UlaZh:ZzakY92E1
+R1
+I8JJL4_FRz?m`M1O8mZ^Al0
+R2
+R3
+R4
+R5
+R6
+!i122 13
+L0 10 8
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+n@f@a4
+vFA4_tb
+!s110 1707553040
+!i10b 1
+!s100 gI0YR4<[i?bUTDgz10=8e2
+R1
+IelL8ZNg8Y?ZlFn@`a1fmV0
+R2
+R3
+w1707553036
+R5
+R6
+!i122 7
+L0 15 20
+R8
+r1
+!s85 0
+31
+!s108 1707553040.000000
+R10
+R11
+!i113 1
+R12
+R13
+n@f@a4_tb
+vfull_adder
+Z14 !s110 1707549849
+!i10b 1
+!s100 Td[_K6z7CzC_jjBc94F=e0
+R1
+IMCozQK7[R>;EbknT@S6ja0
+R2
+R3
+Z15 w1707549651
+Z16 8C:/Users/pknad/Documents/EEE333_verilog/lab2/ALU.v
+Z17 FC:/Users/pknad/Documents/EEE333_verilog/lab2/ALU.v
+!i122 2
+L0 7 2
+R8
+r1
+!s85 0
+31
+Z18 !s108 1707549849.000000
+Z19 !s107 C:/Users/pknad/Documents/EEE333_verilog/lab2/ALU.v|
+Z20 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/pknad/Documents/EEE333_verilog/lab2/ALU.v|
+!i113 1
+R12
+R13
+vHA
+R0
+!i10b 1
+!s100 66^OdeHNT`>klMWTGDOES2
+R1
+Ih[6am0Q0aoM^M9MlT0e8T2
+R2
+R3
+R4
+R5
+R6
+!i122 13
+L0 26 4
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+n@h@a
+vhalf_adder
+R14
+!i10b 1
+!s100 f;zHfmNfHGNGSK?dH_TS^1
+R1
+ICkif`P`djfUl5BL5XWm3O0
+R2
+R3
+R15
+R16
+R17
+!i122 2
+L0 10 4
+R8
+r1
+!s85 0
+31
+R18
+R19
+R20
+!i113 1
+R12
+R13
+vripple_adder
+!s110 1707551631
+!i10b 1
+!s100 ]_jXW5:^5VgTNi63XoZg:3
+R1
+I7F]YdG=^jg^UMcTeB:4cT2
+R2
+R3
+w1707551627
+R16
+R17
+!i122 3
+L0 4 2
+R8
+r1
+!s85 0
+31
+!s108 1707551631.000000
+R19
+R20
+!i113 1
+R12
+R13

@@ -1,0 +1,26 @@
+|FA
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+Sum << HA:ha2.port2
+Cout << Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FA|HA:ha1
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FA|HA:ha2
+A => Sum.IN0
+A => Cout.IN0
+B => Sum.IN1
+B => Cout.IN1
+Sum <= Sum.DB_MAX_OUTPUT_PORT_TYPE
+Cout <= Cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
