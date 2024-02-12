@@ -1,4 +1,49 @@
+module ALU_pv(input [3:0] aluin_a, OPCODE, input Cin, output reg [3:0] alu_out, output reg Cout, output OF);
+wire [3:0] aluin_b, alu_out_; wire Cout_, OF_;
+assign aluin_b = 4'b0011;
+ALU ALU1 (aluin_a, aluin_b, OPCODE, Cin, alu_out_, Cout_, OF);
+always @ (*) begin
+	alu_out = alu_out_;
+	Cout = Cout_;
+end
+endmodule
+
+
 module ALU(input [3:0] aluin_a, aluin_b, OPCODE, input Cin, output reg [3:0] alu_out, output reg Cout, output OF);
+reg [3:0] Ain, Bin ; reg Cin_;
+wire [3:0] Bn, Sum; wire Co;
+com2s C1 (aluin_b, Bn);
+FA4 FA1 (Ain, Bin, Cin_, Sum, Co, OF);
+always @ (*) begin
+	Ain = 4'b0000; Bin = 4'b0000; Cin_ = 1'b0; alu_out = 4'b0000; Cout = 1'b0;
+	case (OPCODE)
+		4'b0001 : begin 
+			Ain = aluin_a; Bin = aluin_b; Cin_ = Cin; alu_out = Sum; Cout = Co;
+		end
+		4'b0010 : begin 
+			Ain = aluin_a; Bin = aluin_b; Cin_ = 1'b0; alu_out = Sum; Cout = Co;
+		end	
+		4'b0011 : begin 
+			Ain = aluin_a; Bin = Bn; Cin_ = Cin; alu_out = Sum; Cout = Co;
+		end
+		4'b0100 : begin 
+			alu_out = ~(aluin_a & aluin_b);
+		end
+		4'b0101 : begin 
+			alu_out = aluin_a | aluin_b;
+		end
+		4'b0110 : begin
+			alu_out = aluin_a ^ aluin_b;
+		end
+		4'b0111 : begin 
+			alu_out = ~aluin_a;
+		end
+		4'b1000 : begin 
+			alu_out = aluin_a >> 1;
+		end
+		default : alu_out = 4'b0000; 
+	endcase
+end
 
 endmodule
 
