@@ -1,1 +1,59 @@
+C:/Users/pknad/Documents/EEE333_verilog/Test1_Study/practice_test.v {1 {vlog -work work -stats=none {C:\Users\pknad\Documents\EEE333_verilog\Test1_Study\practice_test.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module jk
+-- Compiling module sr
+-- Compiling module t
+-- Compiling module d
+-- Compiling module mux41_
+-- Compiling module mux21_
+-- Compiling module HA
+-- Compiling module FA
+-- Compiling module FA4
+-- Compiling module ALU
+-- Compiling module ALU2
+-- Compiling module HA_TB
+-- Compiling module FA_TB
+-- Compiling module FA4_TB
 
+Top level modules:
+	jk
+	sr
+	t
+	d
+	mux41_
+	mux21_
+	ALU
+	ALU2
+	HA_TB
+	FA_TB
+	FA4_TB
+
+} {} {}} C:/Users/pknad/Documents/EEE333_verilog/Test1_Study/flip_flops.v {1 {vlog -work work -stats=none C:/Users/pknad/Documents/EEE333_verilog/Test1_Study/flip_flops.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module SRlatch
+-- Compiling module Dlathch
+-- Compiling module SR_FlipFlop
+-- Compiling module JK_FlipFlop
+-- Compiling module T_FlipFlop
+-- Compiling module D_FlipFlop
+-- Compiling module Tff_
+-- Compiling module sync_counter
+-- Compiling module pcounter
+-- Compiling module freq_divider
+-- Compiling module pcounter50
+-- Compiling module mux21_
+-- Compiling module Dreg
+
+Top level modules:
+	Dlathch
+	SR_FlipFlop
+	D_FlipFlop
+	Tff_
+	sync_counter
+	pcounter
+	freq_divider
+	pcounter50
+	mux21_
+	Dreg
+
+} {} {}}
