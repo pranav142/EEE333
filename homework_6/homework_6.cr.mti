@@ -1,0 +1,14 @@
+C:/Users/pknad/Documents/EEE333_verilog/homework_6/homework_6.sv {1 {vlog -work work -sv -stats=none C:/Users/pknad/Documents/EEE333_verilog/homework_6/homework_6.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_41
+-- Compiling module D_reg
+-- Compiling module fsm_moore
+-- Compiling module fsm_moore_tb
+-- Compiling module fsm_mealy
+-- Compiling module fsm_mealy_tb
+
+Top level modules:
+	fsm_moore_tb
+	fsm_mealy_tb
+
+} {} {}}

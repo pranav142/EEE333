@@ -1,0 +1,221 @@
+
+module SRff(input S, R, Clk, En, output reg Q, output Qn);
+always_ff @ (posedge Clk) begin
+	if (S&&R)
+		Q <= 1'bx;
+	else if (En)
+		Q <= S | ~R&Q;
+end
+assign Qn  = ~Q;
+endmodule
+
+`timescale 1ns/1ps
+module SRff_tb();
+wire Q, Qn;
+reg S, R, Clk, En;
+SRff SR1 (S, R, Clk, En, Q, Qn); 
+initial begin
+	Clk=1'b1; S=1'b0; R=1'b1; En=1'b1; #10; // 010
+	Clk=1'b0; #10;
+	$display("Time\tClk\tEn\tS\tR\tQ\tQn");
+	$monitor("%g\t%b\t%b\t%b\t%b\t%b\t%b", $time, Clk, En, S, R, Q, Qn);
+	Clk=1'b1; S=1'b0; R=1'b0; #10; // 000
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b1; R=1'b0; #10; // 100
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b0; R=1'b1; #10; // reset q back to 0
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b1; R=1'b1; #10; // 110
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b1; R=1'b0; #10; // reset q back to 1
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b1; R=1'b0; #10; // 101
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b0; R=1'b0; #10; // 001
+	Clk=1'b0; #10;
+	
+	Clk=1'b1; S=1'b0; R=1'b1; #10; // 011
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b1; R=1'b0; #10; // set q back to 1
+	Clk=1'b0; #10;
+
+	Clk=1'b1; S=1'b1; R=1'b1; #10; // 111
+	Clk=1'b0; #10;
+
+end
+endmodule
+
+module JKff (input J, K, Clk, R, En, output reg Q, output Qn); 
+always_ff @ (posedge Clk or posedge R) begin
+	if (R)
+		Q <= 1'b0;
+	else if (En)
+		Q <= J&~Q | ~K&Q;
+end
+assign Qn = ~Q;
+endmodule
+
+`timescale 1ns/1ps
+module JKff_tb();
+wire Q, Qn;
+reg J, K, Clk, R, En;
+
+JKff JK1 (J, K, Clk, R, En, Q, Qn);
+
+initial begin 
+	Clk = 1'b0; En = 1'b1; 
+        R = 1'b1; #10; R = 1'b0; 
+
+	$display("Time\tJ\tK\tR\tQ\tQn");
+	$monitor("%g\t%b\t%b\t%b\t%b\t%b", $time, J, K, R, Q, Qn);
+
+	Clk = 1'b1; J = 1'b0; K = 1'b0; #10; // 000
+	Clk = 1'b0; #10;
+
+	Clk = 1'b1; J = 1'b0; K = 1'b1; #10; // 010
+	Clk = 1'b0; #10;
+
+	Clk = 1'b1; J = 1'b1; K = 1'b0; #10; // 100
+	Clk = 1'b0; #10;
+
+	Clk = 1'b1; J = 1'b1; K = 1'b1; #10; // 111
+	Clk = 1'b0; #10;
+
+	Clk = 1'b1; J = 1'b1; K = 1'b1; #10; // 110
+	Clk = 1'b0; #10;	
+
+	Clk = 1'b1; J = 1'b0; K = 1'b0; #10; // 001
+	Clk = 1'b0; #10;
+
+	Clk = 1'b1; J = 1'b1; K = 1'b0; #10; // 101
+	Clk = 1'b0; #10;
+
+	Clk = 1'b1; J = 1'b0; K = 1'b1; #10; // 011
+	Clk = 1'b0; #10;
+end
+endmodule
+
+module T_ff(input T, Clk, R, En, output reg Q, Qn);
+always_ff @ (posedge Clk or posedge R) begin
+	if (R)
+		Q <= 1'b0;
+	else if (En)
+		Q <= T^Q;
+end
+assign Qn = ~Q;
+endmodule 
+
+module T_ff_tb ();
+wire Q, Qn;
+reg T, Clk, R, En;
+
+T_ff Tff1 (T, Clk, R, En, Q, Qn);
+initial begin
+	Clk = 1'b0; En = 1'b1; // Initialize Clock and Enable
+        R = 1'b1; #10; R = 1'b0;
+	
+	$display("Time\tT\tQ*\tQn*\t");
+	$monitor("%g\t%b\t%b\t%b", $time, T, Q, Qn);
+
+	Clk=1'b1; T=1'b0; #10; // 00
+	Clk=1'b0; #10;
+
+	Clk=1'b1; T=1'b1; #10; // 10
+	Clk=1'b0; #10;
+
+	Clk=1'b1; T=1'b0; #10; // 01
+	Clk=1'b0; #10;
+	
+	Clk=1'b1; T=1'b1; #10; // 11
+	Clk=1'b0; #10;
+end
+endmodule
+
+module SCounter_6 (input Clk, reset, output reg [2:0] Q, output reg Z);
+always_ff @ (posedge Clk) begin
+	if (reset) begin 
+		Q <= 3'd0;
+		Z <= 1'b0;
+	end
+	else
+		if (Q < 4'd6) begin
+			Q <= Q+3'd1;
+			Z <= (Q == 3'd5) ? 1'b1 : 1'b0;
+		end
+		else begin 
+			Q <= 3'd0;
+			Z <= 1'b0;
+		end
+end
+endmodule
+
+module DReg (input [2:0] D, input Clk, reset, output logic [2:0] Q);
+always_ff @ (posedge Clk or posedge reset) begin
+	if (reset)
+		Q <= 3'd0;
+	else 
+		Q <= D;
+end
+endmodule
+
+module HA(input A, B, output sum, cout); 
+assign sum = A^B;
+assign cout = A&B;
+endmodule
+
+module FA(input A, B, Cin, output sum, cout);
+wire s1, c1, c2;
+HA ha1 (A, B, s1, c1);
+HA ha2 (s1, Cin, sum, c2); 
+assign cout = c1 | c2;
+endmodule
+
+module RA(input [2:0] A, B, input Cin, output [2:0] sum, output cout, OF);
+wire co1, co2;
+FA FA1 (A[0], B[0], Cin, sum[0], co1);
+FA FA2 (A[1], B[1], co1, sum[1], co2);
+FA FA3 (A[2], B[2], co2, sum[2], cout);
+assign OF = cout ^ co2;
+endmodule
+
+module SCounter_7 (input Clk, reset, output logic [2:0] Q, output logic Z);
+wire [2:0] Q_in, sum_; reg [2:0] sum; 
+wire cout, OF;
+DReg D1 (sum, Clk, reset, Q_in); 
+RA RA1 (3'd0, Q_in, 1'b1, sum_, cout, OF); 
+assign Q = Q_in;
+assign Z = (Q_in == 3'd6) ? 1'b1 : 1'b0;
+
+always_comb begin
+	if (Q_in == 3'd6)
+		sum = 3'b0;
+	else 
+		sum = sum_;
+end
+endmodule
+
+`timescale 1ns/1ps
+module SCount67_tb();
+wire [2:0] Q6, Q7; wire Z6, Z7;
+reg Clk, reset;
+SCounter_6 S1 (Clk, reset, Q6, Z6);
+SCounter_7 S2 (Clk, reset, Q7, Z7);
+
+initial begin
+	Clk=1'b1; reset=1'b1;#10;
+	reset=1'b0;
+	$monitor("Time=%t, Q6=%d, Z6=%b, Q7=%d, Z7=%b", $time, Q6, Z6, Q7, Z7);
+	repeat (15) begin
+		Clk=1'b0; #10;
+		Clk=1'b1; #10;	
+	end
+end
+endmodule
+

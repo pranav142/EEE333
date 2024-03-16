@@ -1,0 +1,1 @@
+Count = 001Count = 010Count = 011Count = 100Count = 101Count = 110Count = 000Count = 001Count = 010

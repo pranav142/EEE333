@@ -1,0 +1,399 @@
+module FSM(input SW1, SW2, SW3, SW4, clk, reset, output logic [2:0] state, output logic [1:0] Z);
+localparam S0=3'b000, S1=3'b001, S2=3'b010, S3=3'b011, S4=3'b100;
+logic [2:0] next_state;
+
+wire [3:0] SW;
+assign SW = {SW4, SW3, SW2, SW1};
+
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		state <= S0;
+	else 
+		state <= next_state;
+end
+
+always_comb begin
+	next_state = state; 
+
+	Z = (state == S0) ? 2'b01 : 
+    	    (state == S1) ? 2'b10 : 
+            ((state == S2) || (state == S3)) ? 2'b00 : 
+            (state == S4) ? 2'b11 : 2'b00;
+
+	case (state)
+		S0: next_state = (SW == 4'b0010) ? S1 : (SW == 4'b0100) ? S3 : S0;
+		S1: next_state = (SW == 4'b0001) ? S2 : S1;
+		S2: next_state = (SW == 4'b1000) ? S3 : (SW == 4'b0001) ? S1: S2;
+		S3: next_state = (SW == 4'b0001) ? S1 : (SW == 4'b0100) ? S4: S3;
+		S4: next_state = (SW == 4'b0001) ? S1 : S4;
+		default : next_state = S0; 
+	endcase
+end
+endmodule
+
+`timescale 1ns/1ps
+module FSM_tb();
+
+reg SW1, SW2, SW3, SW4, clk, SW0;
+wire [2:0] state; wire [1:0] Z;
+
+FSM FSM1 (SW1, SW2, SW3, SW4, clk, SW0, state, Z);
+
+initial begin
+	// reset
+	clk=1'b0; SW0=1'b1; SW1=1'b0; SW2=1'b0; SW3=1'b0; SW4=1'b0; #10;
+	clk=1'b1; SW0=1'b0; #10;
+	
+	// part 1
+	clk=1'b0; SW0=1'b1; #10;
+	clk=1'b1; #10;
+	
+	clk=1'b0; SW0=1'b0; SW3=1'b1; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; SW3=1'b0; SW1=1'b1; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; SW1=1'b0; SW4=1'b1; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; SW4=1'b0; SW2=1'b1; SW3=1'b1; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; SW2=1'b0; #10;
+	clk=1'b1; #10;
+	
+	clk=1'b0; SW3=1'b0; SW1=1'b1; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; SW1=1'b0; SW0=1'b1; #10;
+	clk=1'b1; #10;
+
+	clk=1'b0; SW0=1'b0; SW3=1'b1; #10;
+	clk=1'b1; #10;
+	
+	clk=1'b0; #10;
+	clk=1'b1; #10
+	
+	// reset
+	clk=1'b0; SW0=1'b1; SW1=1'b0; SW2=1'b0; SW3=1'b0; SW4=1'b0; #10;
+	clk=1'b1; SW0=1'b0; #10;
+	// part 2
+	clk=1'b0; SW0=1'b1; #10;
+	clk=1'b1;  #10;
+	
+	clk=1'b0; SW0=1'b0; SW2=1'b1; #10;
+	clk=1'b1;  #10;
+
+	clk=1'b0; SW2=1'b0; SW1=1'b1; #10;
+	clk=1'b1;  #10;	
+
+	clk=1'b0; SW1=1'b0; SW4=1'b1; #10;
+	clk=1'b1;  #10;
+
+	clk=1'b0; SW4=1'b0; SW3=1'b1; #10;
+	clk=1'b1;  #10;
+
+	clk=1'b0; SW3=1'b0; SW1=1'b1; #10;
+	clk=1'b1;  #10;
+end
+endmodule
+
+module ASCII27Seg(input [7:0] AsciiCode, output reg [6:0] HexSeg);
+    always @ (*) begin 
+        HexSeg = 7'd0;
+        $display("AsciiCode %b", AsciiCode);
+        case (AsciiCode)
+            // ------Upper Case Letters -----
+            // A
+            8'h41 : HexSeg[3] = 1'b1;
+            // B
+            8'h42 : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1;
+			end
+            // C
+            8'h43 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;
+			end
+            // D
+            8'h44 : begin
+				HexSeg[0] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+            // E
+            8'h45 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; 
+			end
+            // F
+            8'h46 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // G
+            8'h47 : HexSeg[4] = 1'b1;
+            // H
+            8'h48 : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // I
+            8'h49 : begin
+				HexSeg = 7'b1111111; HexSeg[5] = 1'b0; HexSeg[4] = 1'b0;
+			end
+            // J
+            8'h4A : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+            // K 
+            8'h4B : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // L
+            8'h4C : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;  
+			end
+            // M 
+            8'h4D : begin
+				HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[6] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // N
+            8'h4E : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // O
+            8'h4F : HexSeg[6] = 1'b1;
+            // P
+            8'h50 : begin
+				HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // Q 
+            8'h51 : begin 
+				HexSeg[4] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // R
+            8'h52 : begin
+				HexSeg[5] = 1'b1; HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // S
+            8'h53 : begin 
+				HexSeg[1] = 1'b1; HexSeg[4] = 1'b1;
+			end
+            // T
+            8'h54 : begin 
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1;
+			end
+            // U
+            8'h55 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1;
+			end
+            // V 
+            8'h56 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1;
+			end 
+            // W 
+            8'h57 : begin 
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[4] = 1'b1; HexSeg[2] = 1'b1;
+			end
+            // X 
+            8'h58 : begin 
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // Y
+            8'h59 : begin
+				HexSeg[0] = 1'b1; HexSeg[4] = 1'b1;
+			end
+            // Z 
+            8'h5A : begin
+				HexSeg[5] = 1'b1; HexSeg[2] = 1'b1;
+			end
+
+			// ------Lower Case Letters-----
+			// a
+			8'h61 : HexSeg[3] = 1'b1;
+			// b
+			8'h62 : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1;
+			end
+			// c
+			8'h63 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;
+			end
+			// d
+			8'h64 : begin
+				HexSeg[0] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+			// e
+			8'h65 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; 
+			end
+			// f
+			8'h66 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// g
+			8'h67 : HexSeg[4] = 1'b1;
+			// h
+			8'h68 : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// i
+			8'h69 : begin
+				HexSeg = 7'b1111111; HexSeg[5] = 1'b0; HexSeg[4] = 1'b0;
+			end
+			// j
+			8'h6A : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+			// k
+			8'h6B : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// l
+			8'h6C : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;  
+			end
+			// m
+			8'h6D : begin
+				HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[6] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// n
+			8'h6E : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// o
+			8'h6F : HexSeg[6] = 1'b1;
+			// p
+			8'h70 : begin
+				HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// q
+			8'h71 : begin 
+				HexSeg[4] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// r
+			8'h72 : begin
+				HexSeg[5] = 1'b1; HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// s
+			8'h73 : begin 
+				HexSeg[1] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// t
+			8'h74 : begin 
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1;
+			end
+			// u
+			8'h75 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1;
+			end
+			// v
+            8'h76 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1;
+			end 
+            // w 
+            8'h77 : begin 
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[4] = 1'b1; HexSeg[2] = 1'b1;
+			end
+            // x 
+            8'h78 : begin 
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // y
+            8'h79 : begin
+				HexSeg[0] = 1'b1; HexSeg[4] = 1'b1;
+			end
+            // z 
+            8'h7A : begin
+				HexSeg[5] = 1'b1; HexSeg[2] = 1'b1;
+			end
+
+			// ------Numbers-----
+			// 0
+			8'h30 : begin
+				HexSeg[6] = 1'b1;
+			end
+			// 1
+			8'h31 : begin
+				HexSeg[6] = 1'b1; HexSeg[0] = 1'b1; HexSeg[3] = 1'b1; HexSeg[5] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// 2
+			8'h32 : begin
+				HexSeg[5] = 1'b1; HexSeg[2] = 1'b1;
+			end
+			// 3
+			8'h33 : begin
+				HexSeg[5] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// 4
+			8'h34 : begin
+				HexSeg[0] = 1'b1; HexSeg[4] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// 5
+			8'h35 : begin
+				HexSeg[1] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// 6
+			8'h36 :HexSeg[1] = 1'b1;
+			// 7
+			8'h37 : begin
+				HexSeg[5] = 1'b1; HexSeg[4] = 1'b1; HexSeg[6] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// 8
+			8'h38 : HexSeg = 7'd0;
+			// 9
+			8'h39 : HexSeg[4] = 1'b1;
+			// underscore
+			8'h5F : HexSeg = 7'b1110111;
+            default : HexSeg = 7'b1111111;
+        endcase
+    end
+endmodule
+
+module FSM_pv(input Key0, SW0, SW1, SW2, SW3, SW4, output logic [6:0] SEG0, SEG1, SEG2, SEG3, output logic [6:0] LED_SW);
+
+localparam S0 = 3'b000, S1=3'b001, S2=3'b010, S3=3'b011, S4=3'b100;
+localparam Underscore_Ascii=8'h5F, I_Ascii=8'h69, D_Ascii=8'h64, A_Ascii=8'h61, N_Ascii=8'h4E, S_Ascii=8'h53;
+localparam Zero_Ascii=8'h30, One_Ascii=8'h31, Two_Ascii=8'h32, Three_Ascii=8'h33, Four_Ascii=8'h34;
+
+logic [2:0] state; logic [1:0] Z;
+logic [7:0] Ascii0, Ascii1, Ascii2, Ascii3;
+
+FSM FSM1 (SW1, SW2, SW3, SW4, Key0, SW0, state, Z);
+
+ASCII27Seg ASEG0 (Ascii0, SEG0);
+ASCII27Seg ASEG1 (Ascii1, SEG1);
+ASCII27Seg ASEG2 (Ascii2, SEG2);
+ASCII27Seg ASEG3 (Ascii3, SEG3);
+
+assign Ascii0 = (state == S0) ? I_Ascii : (state == S1) ? One_Ascii : (state == S2) ? Two_Ascii : (state == S3) ? Three_Ascii : Four_Ascii;
+assign Ascii1 = (state == S0) ? D_Ascii : Zero_Ascii;
+assign Ascii2 = (state == S0) ? A_Ascii : Underscore_Ascii;
+assign Ascii3 = (state == S0) ? N_Ascii : S_Ascii;
+
+assign LED_SW = {Z, SW4, SW3, SW2, SW1, SW0};
+
+endmodule
+
+module DebounceUpDate #(parameter cntSize=8) (input reset, clk, pb, output logic pulse);
+
+logic [cntSize-1:0] cnt;
+always_ff @ (posedge clk) begin
+	if (reset) begin
+		cnt <= {cntSize{1'b1}}; 
+		pulse <= 1'b1;
+	end
+	else begin
+		cnt <= {cnt[cntSize-2:0], pb};
+		if ( &cnt )
+			pulse <=1'b1;
+		else if (~|cnt)
+			pulse <=1'b0;
+	end
+end
+endmodule

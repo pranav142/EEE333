@@ -1,0 +1,37 @@
+C:/Users/pknad/Documents/EEE333_verilog/Test2_study/Test2.sv {1 {vlog -work work -sv -stats=none C:/Users/pknad/Documents/EEE333_verilog/Test2_study/Test2.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module MUX21
+-- Compiling module MUX41
+-- Compiling module Dreg
+-- Compiling module JK
+-- Compiling module FSM_moore_a
+-- Compiling module FSM_moore
+-- Compiling module counter6
+-- Compiling module counter6_a
+-- Compiling module prob2
+-- Compiling module mux21
+-- Compiling module regstr
+-- Compiling module JK_FF
+-- Compiling module SR_FF
+-- Compiling module count
+-- Compiling module counta
+-- Compiling module count_tb
+-- Compiling module mux41
+-- Compiling module moore
+-- Compiling module moore2
+
+Top level modules:
+	JK
+	FSM_moore_a
+	FSM_moore
+	counter6_a
+	prob2
+	mux21
+	JK_FF
+	SR_FF
+	counta
+	count_tb
+	moore
+	moore2
+
+} {} {}}

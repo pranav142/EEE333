@@ -1,0 +1,189 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/pknad/Documents/EEE333_verilog/lab3
+vcount6
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1710284665
+!i10b 1
+!s100 j^T7E7972`]lMo1`f9Zg22
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IY?J_NBG:JY2BFWXVfR;j>3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z4 dC:/Users/pknad/Documents/EEE333_verilog/homework_8
+Z5 w1710284663
+Z6 8C:\Users\pknad\Documents\EEE333_verilog\homework_8\hw8.sv
+Z7 FC:\Users\pknad\Documents\EEE333_verilog\homework_8\hw8.sv
+!i122 30
+L0 18 5
+Z8 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z9 !s108 1710284665.000000
+!s107 C:\Users\pknad\Documents\EEE333_verilog\homework_8\hw8.sv|
+Z10 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\homework_8\hw8.sv|
+!i113 1
+Z11 o-work work -sv
+Z12 tCvgOpt 0
+vdreg
+R0
+R1
+!i10b 1
+!s100 ]D_S;=EN0lTDC6@V^Z2R73
+R2
+IAeab?^8;H1I]a3IfS_Egm0
+R3
+S1
+R4
+R5
+R6
+R7
+!i122 30
+L0 8 8
+R8
+r1
+!s85 0
+31
+R9
+Z13 !s107 C:\Users\pknad\Documents\EEE333_verilog\homework_8\hw8.sv|
+R10
+!i113 1
+R11
+R12
+vFSM
+R0
+R1
+!i10b 1
+!s100 ^T2Z^8cAkj3T:gCMK?47P0
+R2
+IC:1DeXCd;UUmmSfd2OJi91
+R3
+S1
+R4
+R5
+R6
+R7
+!i122 30
+L0 49 28
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+n@f@s@m
+vJK_tb
+R0
+R1
+!i10b 1
+!s100 0o7Dz2ZgFf_Z0>i1^@2i20
+R2
+IgXoIIC;RBU[39JRnHZ?Lh0
+R3
+S1
+R4
+R5
+R6
+R7
+!i122 30
+L0 89 31
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+n@j@k_tb
+vJKFF
+R0
+R1
+!i10b 1
+!s100 _SaG5@;BUMPkQ;K22AkUm1
+R2
+IWVz=ZEa[D4neH>0EIHH5a1
+R3
+S1
+R4
+R5
+R6
+R7
+!i122 30
+L0 78 9
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+n@j@k@f@f
+vmux21_
+R0
+R1
+!i10b 1
+!s100 k:h=iWe=2zU]JWizZUY1D1
+R2
+I;hWfi328Tn3FiMV8GfV>^2
+R3
+S1
+R4
+R5
+R6
+R7
+!i122 30
+L0 3 3
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+vprob2
+R0
+R1
+!i10b 1
+!s100 6Xli8k[`b[nQVclUH@lc21
+R2
+IK5TTkdWR6KHXd<lOkK9@70
+R3
+S1
+R4
+R5
+R6
+R7
+!i122 30
+L0 26 21
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
