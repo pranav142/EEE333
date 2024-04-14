@@ -1,7 +1,20 @@
-// 50 percent 
-module freq_divider();
+// 50 percent should count up to half the frequency
+module freq_div #(parameter size=8) (input clk, reset, input [size-1:0] count_max, output logic [size-1:0] count, output logic clkout); 
+always_ff @ (posedge clk or posedge reset)
+	if (reset) begin
+		clkout <= 1'b0;
+		count <= 1'b0;
+	end
+	else begin
+		if (count < count_max)
+			count <= count + {{size-1{1'b0}}, 1'b1};
+		end
+		else begin
+			count <= {size{1'b0}};
+			clkout <= ~clkout;
+		end
+	end
 endmodule
-
 // case(sel)
 // casex(sel) ignores any undefined x or floating bit z
 // casez(sel) ignors any bit that is z (we can us e a z or ? to indicate we don't care)
