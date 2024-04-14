@@ -1,0 +1,167 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/pknad/Documents/EEE333_verilog/homework_9
+vFA
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1711584870
+!i10b 1
+!s100 ?oze@:>dXoQH;2SA3TIG[3
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I>@TScUF3i;m]GiDFIkF9b0
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+Z5 w1711584784
+Z6 8C:\Users\pknad\Documents\EEE333_verilog\homework_9\homework_9.sv
+Z7 FC:\Users\pknad\Documents\EEE333_verilog\homework_9\homework_9.sv
+!i122 2
+L0 6 6
+Z8 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z9 !s108 1711584870.000000
+!s107 C:\Users\pknad\Documents\EEE333_verilog\homework_9\homework_9.sv|
+Z10 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\homework_9\homework_9.sv|
+!i113 1
+Z11 o-work work -sv
+Z12 tCvgOpt 0
+n@f@a
+vFA16
+R1
+R2
+!i10b 1
+!s100 3[Li@?RM2I4dbk5ZKhZcz3
+R3
+Ic5Z7nVDZD6VBDlDU83:U_2
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 2
+L0 14 14
+R8
+r1
+!s85 0
+31
+R9
+Z13 !s107 C:\Users\pknad\Documents\EEE333_verilog\homework_9\homework_9.sv|
+R10
+!i113 1
+R11
+R12
+n@f@a16
+vFA16_tb
+R1
+R2
+!i10b 1
+!s100 8]nHL7m9b[];7jT1a7BK[3
+R3
+I@Y^GH4JKhOhICXRFz9[M02
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 2
+L0 31 10
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+n@f@a16_tb
+vHA
+R1
+R2
+!i10b 1
+!s100 fL@P:VLVa[0jWW6D_OHIE0
+R3
+In@g6TCLOD<U@?Gj?^2iaZ1
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 2
+L0 1 4
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+n@h@a
+vRegFile
+R1
+R2
+!i10b 1
+!s100 GBO;0^X@IUB`8IO<Q^W==1
+R3
+ISgZl0^7kOn_A4D<:NSRe?0
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 2
+L0 69 18
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+n@reg@file
+vROM
+R1
+R2
+!i10b 1
+!s100 j3Z;YU?<R8@ORXPfoS7]z1
+R3
+IomY?6Q4nF6AVClC@mC[N[2
+R4
+S1
+R0
+R5
+R6
+R7
+!i122 2
+L0 43 25
+R8
+r1
+!s85 0
+31
+R9
+R13
+R10
+!i113 1
+R11
+R12
+n@r@o@m

@@ -1,0 +1,16 @@
+C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv {1 {vlog -work work -sv -stats=none {C:\Users\pknad\Documents\EEE333_verilog\Homework_10\hw10.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module Shiftreg
+-- Compiling module Register
+-- Compiling module mux21
+-- Compiling module HA
+-- Compiling module FA
+-- Compiling module RA
+-- Compiling module multiplier
+-- Compiling module multiplier_2
+-- Compiling module mult_tb
+
+Top level modules:
+	mult_tb
+
+} {} {}}

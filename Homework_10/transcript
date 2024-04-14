@@ -1,0 +1,1192 @@
+# Compile of hw10.sv was successful.
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv was successful.
+vsim -gui work.Shiftreg
+# vsim -gui work.Shiftreg 
+# Start time: 20:31:31 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.Shiftreg
+add wave -position end  sim:/Shiftreg/A
+add wave -position end  sim:/Shiftreg/clk
+add wave -position end  sim:/Shiftreg/Loadn
+add wave -position end  sim:/Shiftreg/reset
+add wave -position end  sim:/Shiftreg/size
+add wave -position end  sim:/Shiftreg/Y
+add wave -position end  sim:/Shiftreg/Y_shift
+add wave -position end  sim:/Shiftreg/zero
+force -freeze sim:/Shiftreg/A 0001 0
+force -freeze sim:/Shiftreg/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/Shiftreg/Loadn 1 0
+force -freeze sim:/Shiftreg/reset 1 0
+run
+run
+force -freeze sim:/Shiftreg/reset 0 0
+run
+run
+run
+run
+run
+run
+force -freeze sim:/Shiftreg/Loadn 0 0
+run
+run
+run
+run
+run
+run
+force -freeze sim:/Shiftreg/Loadn 1 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 20:34:10 on Apr 08,2024, Elapsed time: 0:02:39
+# Errors: 0, Warnings: 10
+# Compile of hw10.sv was successful.
+# Compile of hw10.sv was successful.
+# Compile of hw10.sv was successful.
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# vsim -gui work.multiplier 
+# Start time: 20:54:08 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# ** Error: (vsim-3033) Instantiation of 'shiftreg' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 71
+#         Searched libraries:
+#             C:/Users/pknad/Documents/EEE333_verilog/Homework_10/work
+# Loading work.mux21
+# Loading work.RA
+# Error loading design
+# End time: 20:54:09 on Apr 08,2024, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 6
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# vsim -gui work.multiplier 
+# Start time: 20:54:27 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (4) for port 'C'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 72
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (8) for port 'Y'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 72
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+force -freeze sim:/multiplier/A 5 0
+# Invalid binary digit: 5.
+# ** UI-Msg: (vsim-4011) Invalid force value: 5 0.
+# 
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/B 0110 0
+# Compile of hw10.sv failed with 1 errors.
+quit -sim
+# End time: 20:56:49 on Apr 08,2024, Elapsed time: 0:02:22
+# Errors: 0, Warnings: 5
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# vsim -gui work.multiplier 
+# Start time: 20:57:13 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (4) for port 'C'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (8) for port 'Y'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+# Compile of hw10.sv failed with 1 errors.
+quit -sim
+# End time: 20:58:11 on Apr 08,2024, Elapsed time: 0:00:58
+# Errors: 0, Warnings: 6
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# vsim -gui work.multiplier 
+# Start time: 20:59:09 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (4) for port 'C'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (8) for port 'Y'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/B 0110 0
+force -freeze sim:/multiplier/clk HiZ 0
+force -freeze sim:/multiplier/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/multiplier/reset 1 0
+run
+run
+force -freeze sim:/multiplier/reset 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of hw10.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/B 0110 0
+force -freeze sim:/multiplier/clk 1 0, 0 {50 ps} -r 100
+run
+run
+force -freeze sim:/multiplier/reset 1 0
+run
+run
+run
+run
+force -freeze sim:/multiplier/reset 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# End time: 21:12:38 on Apr 08,2024, Elapsed time: 0:13:29
+# Errors: 0, Warnings: 2
+# vsim -gui work.multiplier 
+# Start time: 21:12:38 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (8) for port 'Y'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/B 0110 0
+force -freeze sim:/multiplier/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/multiplier/reset 1 0
+run
+run
+force -freeze sim:/multiplier/reset 0 0
+run
+run
+run
+run
+run
+# Compile of hw10.sv was successful.
+# Compile of hw10.sv was successful.
+# Compile of hw10.sv was successful.
+# Load canceled
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# End time: 21:22:23 on Apr 08,2024, Elapsed time: 0:09:45
+# Errors: 0, Warnings: 6
+# vsim -gui work.multiplier 
+# Start time: 21:22:23 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (8) for port 'Y'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/B 0110 0
+force -freeze sim:/multiplier/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/multiplier/reset 1 0
+run
+run
+run
+force -freeze sim:/multiplier/reset 0 0
+run
+run
+run
+run
+run
+force -freeze sim:/multiplier/B 0101 0
+clear
+# invalid command name "clear"
+clc
+# invalid command name "clc"
+quit -sim
+# End time: 21:28:51 on Apr 08,2024, Elapsed time: 0:06:28
+# Errors: 0, Warnings: 2
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# vsim -gui work.multiplier 
+# Start time: 21:29:08 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (8) for port 'Y'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/B 0101 0
+force -freeze sim:/multiplier/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/multiplier/reset 1 0
+run
+run
+run
+run
+force -freeze sim:/multiplier/reset 0 0
+run
+run
+run
+run
+run
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# End time: 21:30:28 on Apr 08,2024, Elapsed time: 0:01:20
+# Errors: 0, Warnings: 4
+# vsim -gui work.multiplier 
+# Start time: 21:30:28 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (8) for port 'Y'. The port definition is at: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /multiplier/M1 File: C:/Users/pknad/Documents/EEE333_verilog/Homework_10/hw10.sv Line: 73
+# Compile of hw10.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+quit -sim
+# End time: 21:31:29 on Apr 08,2024, Elapsed time: 0:01:01
+# Errors: 0, Warnings: 1
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# vsim -gui work.multiplier 
+# Start time: 21:31:57 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+force -freeze sim:/multiplier/A 0110 0
+force -freeze sim:/multiplier/B 0101 0
+force -freeze sim:/multiplier/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/multiplier/reset 1 0
+run
+run
+force -freeze sim:/multiplier/reset 0 0
+run
+run
+run
+run
+run
+# Break key hit
+quit -sim
+# End time: 21:34:17 on Apr 08,2024, Elapsed time: 0:02:20
+# Errors: 0, Warnings: 2
+# Compile of hw10.sv failed with 8 errors.
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv failed with 1 errors.
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier_2
+# vsim -gui work.multiplier_2 
+# Start time: 22:24:15 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/multiplier_2/A
+add wave -position end  sim:/multiplier_2/B
+add wave -position end  sim:/multiplier_2/c1
+add wave -position end  sim:/multiplier_2/c2
+add wave -position end  sim:/multiplier_2/c3
+add wave -position end  sim:/multiplier_2/c4
+add wave -position end  sim:/multiplier_2/c5
+add wave -position end  sim:/multiplier_2/c6
+add wave -position end  sim:/multiplier_2/c7
+add wave -position end  sim:/multiplier_2/c8
+add wave -position end  sim:/multiplier_2/c9
+add wave -position end  sim:/multiplier_2/c10
+add wave -position end  sim:/multiplier_2/c11
+add wave -position end  sim:/multiplier_2/c12
+add wave -position end  sim:/multiplier_2/pp1
+add wave -position end  sim:/multiplier_2/pp2
+add wave -position end  sim:/multiplier_2/pp3
+add wave -position end  sim:/multiplier_2/pp4
+add wave -position end  sim:/multiplier_2/product
+force -freeze sim:/multiplier_2/A 0110 0
+force -freeze sim:/multiplier_2/B 0110 0
+run
+force -freeze sim:/multiplier_2/A 0111 0
+run
+add wave -position end  sim:/multiplier_2/A
+add wave -position end  sim:/multiplier_2/B
+add wave -position end  sim:/multiplier_2/c1
+add wave -position end  sim:/multiplier_2/c2
+add wave -position end  sim:/multiplier_2/c3
+add wave -position end  sim:/multiplier_2/c4
+add wave -position end  sim:/multiplier_2/c5
+add wave -position end  sim:/multiplier_2/c6
+add wave -position end  sim:/multiplier_2/c7
+add wave -position end  sim:/multiplier_2/c8
+add wave -position end  sim:/multiplier_2/c9
+add wave -position end  sim:/multiplier_2/c10
+add wave -position end  sim:/multiplier_2/c11
+add wave -position end  sim:/multiplier_2/c12
+add wave -position end  sim:/multiplier_2/pp1
+add wave -position end  sim:/multiplier_2/pp2
+add wave -position end  sim:/multiplier_2/pp3
+add wave -position end  sim:/multiplier_2/pp4
+add wave -position end  sim:/multiplier_2/product
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# End time: 22:34:49 on Apr 08,2024, Elapsed time: 0:10:34
+# Errors: 0, Warnings: 6
+# vsim -gui work.mult_tb 
+# Start time: 22:34:49 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   x, Product2:  10
+# 
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   x, Product2:  10
+# 
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   x, Product2:  48
+# 
+run
+run
+run
+run
+# A:  8, B:  8, Product1:   x, Product2:  64
+# 
+run
+run
+run
+run
+# A: 14, B: 15, Product1:   x, Product2: 210
+# 
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 22:35:47 on Apr 08,2024, Elapsed time: 0:00:58
+# Errors: 0, Warnings: 1
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# vsim -gui work.mult_tb 
+# Start time: 22:39:36 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   x, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   x, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   x, Product2:  48
+# 
+run
+run
+run
+# WARNING: No extended dataflow license exists
+quit -sim
+# End time: 22:40:44 on Apr 08,2024, Elapsed time: 0:01:08
+# Errors: 0, Warnings: 2
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# vsim -gui work.mult_tb 
+# Start time: 22:41:29 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   x, Product2:   x
+# 
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   x, Product2:   x
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   x, Product2:   x
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  8, Product1:   x, Product2:   x
+# 
+run
+run
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# End time: 22:43:13 on Apr 08,2024, Elapsed time: 0:01:44
+# Errors: 0, Warnings: 3
+# vsim -gui work.mult_tb 
+# Start time: 22:43:13 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   x, Product2:  10
+# 
+run
+run
+run
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# End time: 22:45:05 on Apr 08,2024, Elapsed time: 0:01:52
+# Errors: 0, Warnings: 2
+# vsim -gui work.mult_tb 
+# Start time: 22:45:05 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   0, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   0, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   0, Product2:  48
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  8, Product1:   0, Product2:  64
+# 
+run
+run
+run
+# WARNING: No extended dataflow license exists
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# End time: 22:47:27 on Apr 08,2024, Elapsed time: 0:02:22
+# Errors: 0, Warnings: 2
+# vsim -gui work.mult_tb 
+# Start time: 22:47:27 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   0, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   0, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   0, Product2:  48
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  8, Product1:   0, Product2:  64
+# 
+run
+run
+run
+run
+run
+run
+run
+# A: 14, B: 15, Product1:   0, Product2: 210
+# 
+run
+run
+quit -sim
+# End time: 22:48:05 on Apr 08,2024, Elapsed time: 0:00:38
+# Errors: 0, Warnings: 1
+# Compile of hw10.sv was successful.
+vsim -gui work.multiplier
+# vsim -gui work.multiplier 
+# Start time: 22:49:12 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/multiplier/A
+add wave -position end  sim:/multiplier/ASum
+add wave -position end  sim:/multiplier/B
+add wave -position end  sim:/multiplier/clk
+add wave -position end  sim:/multiplier/cout_
+add wave -position end  sim:/multiplier/i
+add wave -position end  sim:/multiplier/loadn
+add wave -position end  sim:/multiplier/of_
+add wave -position end  sim:/multiplier/one
+add wave -position end  sim:/multiplier/product
+add wave -position end  sim:/multiplier/PSum
+add wave -position end  sim:/multiplier/reset
+add wave -position end  sim:/multiplier/RSum
+add wave -position end  sim:/multiplier/shift_A
+add wave -position end  sim:/multiplier/size
+add wave -position end  sim:/multiplier/zero
+force -freeze sim:/multiplier/A 0110 0
+noforce sim:/multiplier/B
+force -freeze sim:/multiplier/B 0110 0
+force -freeze sim:/multiplier/reset 1 0
+force -freeze sim:/multiplier/clk 1 0
+run
+run
+force -freeze sim:/multiplier/clk 0 0
+run
+run
+run
+run
+run
+run
+force -freeze sim:/multiplier/clk 1 0, 0 {50 ps} -r 100
+run
+run
+run
+run
+run
+run
+run
+force -freeze sim:/multiplier/reset 0 0
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 22:51:48 on Apr 08,2024, Elapsed time: 0:02:36
+# Errors: 0, Warnings: 2
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# vsim -gui work.mult_tb 
+# Start time: 22:52:00 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   0, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   0, Product2:  48
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  8, Product1:   0, Product2:  64
+# 
+run
+run
+run
+quit -sim
+# End time: 22:52:42 on Apr 08,2024, Elapsed time: 0:00:42
+# Errors: 0, Warnings: 2
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# vsim -gui work.mult_tb 
+# Start time: 22:53:17 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   0, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 22:54:19 on Apr 08,2024, Elapsed time: 0:01:02
+# Errors: 0, Warnings: 2
+# Compile of hw10.sv was successful.
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# vsim -gui work.mult_tb 
+# Start time: 22:55:00 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   X, Product2:  10
+# 
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   X, Product2:  48
+# 
+run
+run
+run
+run
+run
+run
+run
+# A:  8, B:  8, Product1:   X, Product2:  64
+# 
+run
+run
+run
+run
+run
+run
+run
+# A: 14, B: 15, Product1:   X, Product2: 210
+# 
+run
+run
+run
+run
+run
+run
+run
+run
+quit -sim
+# End time: 22:55:24 on Apr 08,2024, Elapsed time: 0:00:24
+# Errors: 0, Warnings: 3
+# Compile of hw10.sv was successful.
+vsim -gui work.mult_tb
+# vsim -gui work.mult_tb 
+# Start time: 22:55:46 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+run
+# A:  5, B:  2, Product1:   X, Product2:  10
+# 
+run
+run
+run
+run
+run
+# A:  8, B:  6, Product1:   X, Product2:  48
+# 
+run
+run
+run
+run
+run
+# A:  8, B:  8, Product1:   X, Product2:  64
+# 
+run
+run
+run
+run
+run
+# A: 14, B: 15, Product1:   X, Product2: 210
+# 
+run
+run
+run
+# Compile of hw10.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+restart -f
+quit -sim
+# End time: 22:57:48 on Apr 08,2024, Elapsed time: 0:02:02
+# Errors: 0, Warnings: 1
+vsim -gui work.mult_tb
+# vsim -gui work.mult_tb 
+# Start time: 22:57:53 on Apr 08,2024
+# Loading sv_std.std
+# Loading work.mult_tb
+# Loading work.multiplier
+# Loading work.Register
+# Loading work.Shiftreg
+# Loading work.mux21
+# Loading work.RA
+# Loading work.multiplier_2
+# Loading work.FA
+# Loading work.HA
+add wave -position end  sim:/mult_tb/A
+add wave -position end  sim:/mult_tb/B
+add wave -position end  sim:/mult_tb/clk
+add wave -position end  sim:/mult_tb/p1
+add wave -position end  sim:/mult_tb/p2
+add wave -position end  sim:/mult_tb/reset
+run
+run
+run
+run
+# A:  5, B:  2, Product1:  10, Product2:  10
+# 
+run
+run
+run
+run
+# A:  8, B:  6, Product1:  48, Product2:  48
+# 
+run
+run
+run
+run
+# A:  8, B:  8, Product1:  64, Product2:  64
+# 
+run
+run
+run
+run
+# A: 14, B: 15, Product1: 210, Product2: 210
+# 
+run
+run
+run
+run
+run
+run
+# End time: 23:06:14 on Apr 08,2024, Elapsed time: 0:08:21
+# Errors: 0, Warnings: 1

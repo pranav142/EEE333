@@ -1,0 +1,180 @@
+module Shiftreg #(parameter size = 4)(input clk, reset, input [size-1:0]  A, input Loadn, output logic [2*size-1:0] Y_shift);
+localparam zero = {size{1'b0}};
+logic [2*size-1:0] Y;
+
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		Y <= {2*size{1'b0}};
+	else 
+		Y <= Y_shift;
+end
+
+always_comb begin
+	Y_shift = {size{1'b0}};
+	case (Loadn)
+		1'b0: Y_shift = {zero, A};
+		1'b1: Y_shift = Y <<< 1;
+		default: Y_shift = {2*size{1'b0}};
+	endcase
+end
+endmodule
+
+
+module Register #(parameter size = 4) (input clk, reset, input [size-1:0] D, output logic [size-1:0] Q);
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		Q <= {size{1'b0}};
+	else
+		Q <= D;
+end
+endmodule
+
+module mux21 #(parameter size=4) (input [size-1:0] A, C, input sel, output logic [size-1:0] Y);
+assign Y = (sel) ? A:C;
+endmodule
+
+module HA(input A, B, output sum, cout); 
+assign sum = A^B;
+assign cout = A&B;
+endmodule
+
+module FA(input A, B, Cin, output sum, cout);
+wire s1, c1, c2;
+HA ha1 (A, B, s1, c1);
+HA ha2 (s1, Cin, sum, c2); 
+assign cout = c1 | c2;
+endmodule
+
+module RA #(parameter width=16) (input [width-1:0] A, B, output logic [width-1:0] C, output logic cout_, OF);
+logic [width:0] cout;
+assign cout[0]=1'b0;
+genvar i;
+generate
+	begin
+		for (i=0;i<width;i=i+1) begin : gen_FA
+			FA fa (A[i], B[i], cout[i], C[i], cout[i+1]);
+		end
+	end
+endgenerate
+assign cout_ = cout[width];
+assign OF = cout[width]^cout[width-1];
+endmodule
+
+module multiplier #(parameter size=4) (input [size-1:0] A, B, input clk, reset, output [2*size-1:0] product);
+localparam one = {{size-1{1'b0}}, 1'b1}, zero = {size*2{1'b0}};
+logic [size-1:0] i;
+logic loadn, cout_, of_;
+logic [size*2-1:0] shift_A, PSum, ASum, RSum;
+
+assign loadn = (i > 1'b0) ? 1'b1:1'b0;
+
+Register #(size) IND1 (clk, reset, i+one, i);
+Shiftreg #(size) SR1 (clk, reset, A, loadn, shift_A);
+mux21 #(size*2) M1 (shift_A, zero, B[i], PSum);
+RA #(size*2) R1 (ASum, PSum, RSum, cout_, of_);
+Register #(size*2) AR1 (clk, reset, RSum, ASum);
+
+assign product = ASum;
+endmodule
+
+module multiplier_2(
+    input [3:0] A,
+    input [3:0] B, 
+    output [7:0] product 
+);
+logic [3:0] pp1, pp2, pp3, pp4;
+logic c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12;
+
+assign pp1[0] = A[0] & B[0];
+assign pp1[1] = A[1] & B[0];
+assign pp1[2] = A[2] & B[0];
+assign pp1[3] = A[3] & B[0];
+
+FA fa1 (A[0] & B[1], pp1[1], 1'b0, pp2[0], c1);
+FA fa2 (A[1] & B[1], pp1[2], c1, pp2[1], c2);
+FA fa3 (A[2] & B[1], pp1[3], c2, pp2[2], c3);
+FA fa4 (A[3] & B[1], 1'b0, c3, pp2[3], c4);
+
+FA fa5 (A[0] & B[2], pp2[1], 1'b0, pp3[0], c5);
+FA fa6 (A[1] & B[2], pp2[2], c5, pp3[1], c6);
+FA fa7 (A[2] & B[2], pp2[3], c6, pp3[2], c7);
+FA fa8 (A[3] & B[2], c4, c7, pp3[3], c8);
+
+FA fa9 (A[0] & B[3], pp3[1], 1'b0, pp4[0], c9);
+FA fa10 (A[1] & B[3], pp3[2], c9, pp4[1], c10);
+FA fa11 (A[2] & B[3], pp3[3], c10, pp4[2], c11);
+FA fa12 (A[3] & B[3], c8, c11, pp4[3], c12);
+
+assign product[0] = pp1[0];
+assign product[1] = pp2[0];
+assign product[2] = pp3[0];
+assign product[3] = pp4[0];
+assign product[4] = pp4[1];
+assign product[5] = pp4[2];
+assign product[6] = pp4[3];
+assign product[7] = c12;
+
+endmodule
+
+`timescale 1ns/1ps
+module mult_tb();
+logic clk, reset;
+logic [3:0] A, B;
+logic [7:0] p1, p2;
+
+multiplier m1 (A, B, clk, reset, p1);
+multiplier_2 m2 (A, B, p2);
+
+initial begin
+clk=1'b0; reset=1'b1; A=4'd5; B=4'd2; #5;
+clk=1'b1; reset=1'b0; #5;
+
+repeat(3) begin
+	clk = 1'b0; #5;
+	clk = 1'b1; #5;
+end
+
+$display("A: %d, B: %d, Product1: %d, Product2: %d\n", A, B, p1, p2);
+
+clk=1'b0; reset=1'b1; A=4'd8; B=4'd6; #5;
+clk=1'b1; reset=1'b0; #5;
+
+repeat(3) begin
+	clk = 1'b0; #5;
+	clk = 1'b1; #5;
+end
+
+$display("A: %d, B: %d, Product1: %d, Product2: %d\n", A, B, p1, p2);
+
+clk=1'b0; reset=1'b1; A=4'd8; B=4'd8; #5;
+clk=1'b1; reset=1'b0; #5;
+
+repeat(3) begin
+	clk = 1'b0; #5;
+	clk=1'b1; #5;
+end
+
+$display("A: %d, B: %d, Product1: %d, Product2: %d\n", A, B, p1, p2);
+
+clk=1'b0; reset=1'b1; A=4'd14; B=4'd15; #5;
+clk=1'b1; reset=1'b0; #5;
+
+repeat(3) begin
+	clk = 1'b0; #5;
+	clk=1'b1; #5;
+end
+
+$display("A: %d, B: %d, Product1: %d, Product2: %d\n", A, B, p1, p2);
+
+end
+endmodule
+
+
+
+
+
+
+
+
+
+

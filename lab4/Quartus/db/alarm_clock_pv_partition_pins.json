@@ -1,0 +1,241 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "SEC_LSD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_LSD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_LSD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_LSD[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_LSD[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_LSD[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_LSD[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_MSD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_MSD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_MSD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_MSD[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_MSD[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_MSD[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SEC_MSD[6]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_LSD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_LSD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_LSD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_LSD[3]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_LSD[4]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_LSD[5]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_LSD[6]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_MSD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_MSD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_MSD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_MSD[3]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_MSD[4]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_MSD[5]",
+					"strict" : false
+				},
+				{
+					"name" : "MIN_MSD[6]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_LSD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_LSD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_LSD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_LSD[3]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_LSD[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_LSD[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_LSD[6]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_MSD[0]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_MSD[1]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_MSD[2]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_MSD[3]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_MSD[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_MSD[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HR_MSD[6]",
+					"strict" : false
+				},
+				{
+					"name" : "LED7",
+					"strict" : false
+				},
+				{
+					"name" : "LED5",
+					"strict" : false
+				},
+				{
+					"name" : "LED4",
+					"strict" : false
+				},
+				{
+					"name" : "LED3",
+					"strict" : false
+				},
+				{
+					"name" : "LED2",
+					"strict" : false
+				},
+				{
+					"name" : "LED1",
+					"strict" : false
+				},
+				{
+					"name" : "LED0",
+					"strict" : false
+				},
+				{
+					"name" : "SW1",
+					"strict" : false
+				},
+				{
+					"name" : "SW5",
+					"strict" : false
+				},
+				{
+					"name" : "SW4",
+					"strict" : false
+				},
+				{
+					"name" : "SW3",
+					"strict" : false
+				},
+				{
+					"name" : "SW2",
+					"strict" : false
+				},
+				{
+					"name" : "SW0",
+					"strict" : false
+				},
+				{
+					"name" : "KEY1",
+					"strict" : false
+				},
+				{
+					"name" : "KEY0",
+					"strict" : false
+				},
+				{
+					"name" : "CLK",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

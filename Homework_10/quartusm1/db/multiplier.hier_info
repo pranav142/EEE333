@@ -1,0 +1,377 @@
+|multiplier
+A[0] => A[0].IN1
+A[1] => A[1].IN1
+A[2] => A[2].IN1
+A[3] => A[3].IN1
+B[0] => Mux0.IN3
+B[1] => Mux0.IN2
+B[2] => Mux0.IN1
+B[3] => Mux0.IN0
+clk => clk.IN3
+reset => reset.IN3
+product[0] <= ASum[0].DB_MAX_OUTPUT_PORT_TYPE
+product[1] <= ASum[1].DB_MAX_OUTPUT_PORT_TYPE
+product[2] <= ASum[2].DB_MAX_OUTPUT_PORT_TYPE
+product[3] <= ASum[3].DB_MAX_OUTPUT_PORT_TYPE
+product[4] <= ASum[4].DB_MAX_OUTPUT_PORT_TYPE
+product[5] <= ASum[5].DB_MAX_OUTPUT_PORT_TYPE
+product[6] <= ASum[6].DB_MAX_OUTPUT_PORT_TYPE
+product[7] <= ASum[7].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|Register:IND1
+clk => Q[0]~reg0.CLK
+clk => Q[1]~reg0.CLK
+clk => Q[2]~reg0.CLK
+clk => Q[3]~reg0.CLK
+reset => Q[0]~reg0.ACLR
+reset => Q[1]~reg0.ACLR
+reset => Q[2]~reg0.ACLR
+reset => Q[3]~reg0.ACLR
+D[0] => Q[0]~reg0.DATAIN
+D[1] => Q[1]~reg0.DATAIN
+D[2] => Q[2]~reg0.DATAIN
+D[3] => Q[3]~reg0.DATAIN
+Q[0] <= Q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= Q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|Shiftreg:SR1
+clk => Y[0].CLK
+clk => Y[1].CLK
+clk => Y[2].CLK
+clk => Y[3].CLK
+clk => Y[4].CLK
+clk => Y[5].CLK
+clk => Y[6].CLK
+reset => Y[0].ACLR
+reset => Y[1].ACLR
+reset => Y[2].ACLR
+reset => Y[3].ACLR
+reset => Y[4].ACLR
+reset => Y[5].ACLR
+reset => Y[6].ACLR
+A[0] => Y_shift.DATAA
+A[1] => Y_shift.DATAA
+A[2] => Y_shift.DATAA
+A[3] => Y_shift.DATAA
+Loadn => Decoder0.IN0
+Y_shift[0] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+Y_shift[1] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+Y_shift[2] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+Y_shift[3] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+Y_shift[4] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+Y_shift[5] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+Y_shift[6] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+Y_shift[7] <= Y_shift.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|mux21:M1
+A[0] => Y.DATAB
+A[1] => Y.DATAB
+A[2] => Y.DATAB
+A[3] => Y.DATAB
+A[4] => Y.DATAB
+A[5] => Y.DATAB
+A[6] => Y.DATAB
+A[7] => Y.DATAB
+C[0] => Y.DATAA
+C[1] => Y.DATAA
+C[2] => Y.DATAA
+C[3] => Y.DATAA
+C[4] => Y.DATAA
+C[5] => Y.DATAA
+C[6] => Y.DATAA
+C[7] => Y.DATAA
+sel => Y.OUTPUTSELECT
+sel => Y.OUTPUTSELECT
+sel => Y.OUTPUTSELECT
+sel => Y.OUTPUTSELECT
+sel => Y.OUTPUTSELECT
+sel => Y.OUTPUTSELECT
+sel => Y.OUTPUTSELECT
+sel => Y.OUTPUTSELECT
+Y[0] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[1] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[2] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[3] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[4] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[5] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[6] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+Y[7] <= Y.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1
+A[0] => A[0].IN1
+A[1] => A[1].IN1
+A[2] => A[2].IN1
+A[3] => A[3].IN1
+A[4] => A[4].IN1
+A[5] => A[5].IN1
+A[6] => A[6].IN1
+A[7] => A[7].IN1
+B[0] => B[0].IN1
+B[1] => B[1].IN1
+B[2] => B[2].IN1
+B[3] => B[3].IN1
+B[4] => B[4].IN1
+B[5] => B[5].IN1
+B[6] => B[6].IN1
+B[7] => B[7].IN1
+C[0] <= FA:gen_FA[0].fa.port3
+C[1] <= FA:gen_FA[1].fa.port3
+C[2] <= FA:gen_FA[2].fa.port3
+C[3] <= FA:gen_FA[3].fa.port3
+C[4] <= FA:gen_FA[4].fa.port3
+C[5] <= FA:gen_FA[5].fa.port3
+C[6] <= FA:gen_FA[6].fa.port3
+C[7] <= FA:gen_FA[7].fa.port3
+cout_ <= FA:gen_FA[7].fa.port4
+OF <= OF.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[0].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[0].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[0].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[1].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[1].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[1].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[2].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[2].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[2].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[3].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[3].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[3].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[4].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[4].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[4].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[5].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[5].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[5].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[6].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[6].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[6].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[7].fa
+A => A.IN1
+B => B.IN1
+Cin => Cin.IN1
+sum <= HA:ha2.port2
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[7].fa|HA:ha1
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|RA:R1|FA:gen_FA[7].fa|HA:ha2
+A => sum.IN0
+A => cout.IN0
+B => sum.IN1
+B => cout.IN1
+sum <= sum.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|multiplier|Register:AR1
+clk => Q[0]~reg0.CLK
+clk => Q[1]~reg0.CLK
+clk => Q[2]~reg0.CLK
+clk => Q[3]~reg0.CLK
+clk => Q[4]~reg0.CLK
+clk => Q[5]~reg0.CLK
+clk => Q[6]~reg0.CLK
+clk => Q[7]~reg0.CLK
+reset => Q[0]~reg0.ACLR
+reset => Q[1]~reg0.ACLR
+reset => Q[2]~reg0.ACLR
+reset => Q[3]~reg0.ACLR
+reset => Q[4]~reg0.ACLR
+reset => Q[5]~reg0.ACLR
+reset => Q[6]~reg0.ACLR
+reset => Q[7]~reg0.ACLR
+D[0] => Q[0]~reg0.DATAIN
+D[1] => Q[1]~reg0.DATAIN
+D[2] => Q[2]~reg0.DATAIN
+D[3] => Q[3]~reg0.DATAIN
+D[4] => Q[4]~reg0.DATAIN
+D[5] => Q[5]~reg0.DATAIN
+D[6] => Q[6]~reg0.DATAIN
+D[7] => Q[7]~reg0.DATAIN
+Q[0] <= Q[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[1] <= Q[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Q[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Q[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= Q[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= Q[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[6] <= Q[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+Q[7] <= Q[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
