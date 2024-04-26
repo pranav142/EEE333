@@ -59,23 +59,29 @@ mux16_1 #(1) m3(1'd0, of_add, 1'd0, of_sub, of_adi, 1'd0, 1'd0, of_dec, of_inc, 
 endmodule
 
 module RegFile(input reset, clk, input [3:0] RA, input [3:0] RB, input [3:0] RD, input [3:0] OPCODE, input [1:0] current_state, input [7:0] RF_data_in, output logic [7:0] RF_data_out0, output logic [7:0] RF_data_out1);
-localparam RWB=2'b11;
+localparam IF=2'b00, FD=2'b01, EX=2'b10, RWB=2'b11;
 logic [7:0] RF [15:0];
+integer i;
+
 always_ff @ (posedge clk or posedge reset) begin
 	if (reset) begin
-		int i;
-		for (i = 0; i < 16; i = i + 1) begin 
+		RF_data_out0 <= 8'd0;
+		RF_data_out1 <= 8'd0;
+
+		for (i = 5'd0; i < 5'd16; i = i + 5'd1) begin 
 			RF[i] <=8'b0;
 		end
 	end
 	else begin
-		if (current_state == RWB) begin
+		if (current_state == IF) begin
+			RF_data_out0 <= RF[RA];
+			RF_data_out1 <= RF[RB];
+		end
+		else if (current_state == RWB && (OPCODE != 4'd13) && (OPCODE != 4'd14) && (OPCODE != 4'd15)) begin
 			RF[RD] <= RF_data_in;
 		end
 	end
 end
-assign RF_data_out0 = RF[RA];
-assign RF_data_out1 = RF[RB];
 endmodule
 
 module ROM(input [7:0] PC, output logic [15:0] IR);
@@ -91,8 +97,8 @@ assign mem[7] = 16'h4401;
 assign mem[8] = 16'h8022;
 assign mem[9] = 16'hE040;
 assign mem[10] = 16'h4405;
-assign mem[11] = 16'h5536;
-assign mem[12] = 16'h6637;
+assign mem[11] = 16'h6536;
+assign mem[12] = 16'h5637;
 assign mem[13] = 16'h3538;
 assign mem[14] = 16'h4329; 
 assign mem[15] = 16'h709A;
@@ -122,7 +128,9 @@ mux41 #(2) M1 (FD, EX, RWB, IF, state, next_state);
 
 always_comb begin
 	new_pc = PC;
-	if (state == RWB) begin
+	if (OPCODE == 4'b1111)
+		new_pc = PC;
+	else if (state == RWB) begin
 		if (OPCODE == 4'b1110) 
 			new_pc = {RA, RB};
 		else if (OPCODE == 4'b1101)
@@ -137,17 +145,16 @@ end
 
 endmodule
 
-// TODO Implement Halt and Finish Testing
 module lab5(input clk, reset, output logic [3:0] OPCODE, output logic [1:0] State, output logic [7:0] PC, Alu_out, W_reg, output logic Cout, OF);
-localparam IF=2'b00;
+localparam IF=2'b00, FD=2'b01, EX=2'b10, RWB=2'b11;
+//integer fd;
 
 logic [3:0] RA, RB, RD;
 logic [7:0] A, B, next_PC;
-logic [15:0] IR_, IR;
-ROM R1(PC, IR_);
+logic [15:0] IR;
 
 // IF
-Dreg #(16) ir (clk, reset, (State==IF) ? IR_:IR, IR);
+ROM R1(PC, IR);
 
 assign OPCODE = IR[15:12];
 assign RA = IR[11:8];
@@ -161,8 +168,339 @@ RegFile RF (reset, clk, RA, RB, RD, OPCODE, State, W_reg, A, B);
 alu A1 (A, B, RA, RB, OPCODE, Alu_out, Cout, OF);
 
 // RWB
-Dreg #(8) w_reg(clk, reset, Alu_out, W_reg);
+Dreg #(8) w_reg(clk, reset, (State == EX) ? Alu_out : W_reg, W_reg);
 Dreg #(8) pc(clk, reset, next_PC, PC);
 
 mcu_control MC (clk, reset, PC, OPCODE, RA, RB, RD, A, B, next_PC, State);
+
+//initial begin
+//        fd = $fopen("test1.csv", "w");  // Open the file for writing
+//        if (fd) $fwrite(fd, "PC,IR,OPCODE,RA,RB,RD,W_Reg,Cout,OF\n"); 
+//end
+
+//always_ff @(posedge clk)
+//    	if (State == EX)
+//            $fwrite(fd, "%h,%h,%h,%h,%h,%h,%h,%h,%h\n", 
+//                    PC, IR, OPCODE, RA, RB, RD, W_reg, Cout, OF);
+
+//final begin
+//	$fclose(fd);
+//end
+
+endmodule
+
+`timescale 1ns/1ps
+module lab5_tb();
+logic clk, reset, Cout, OF;
+logic [3:0] OPCODE;
+logic [1:0] State;
+logic [7:0] PC, Alu_out, W_reg;
+
+lab5 L1 (clk, reset, OPCODE, State, PC, Alu_out, W_reg, Cout, OF);
+
+initial begin
+
+clk=1'b0; reset=1'b1; #5;
+clk=1'b1; reset=1'b0; #5;
+
+repeat (1000) begin
+	clk = ~clk; #5;
+end
+
+end
+endmodule
+
+module freq_div #(parameter size=8) (input clk, reset, input [size-1:0] count_max, output logic [size-1:0] count, output logic clkout);
+localparam Zero = {size{1'b0}}, One={{size-1{1'b0}}, 1'b1};
+
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset) begin
+		count <= Zero;
+		clkout <= 1'b0;
+	end
+	else if (count < count_max) 
+		count <= count + One;
+	else begin
+		count <= Zero;
+		clkout <= ~clkout;
+	end
+end
+endmodule
+
+module ASCII27Seg(input [7:0] AsciiCode, output reg [6:0] HexSeg);
+    always @ (*) begin 
+        HexSeg = 7'd0;
+        $display("AsciiCode %b", AsciiCode);
+        case (AsciiCode)
+            // ------Upper Case Letters -----
+            // A
+            8'h41 : HexSeg[3] = 1'b1;
+            // B
+            8'h42 : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1;
+			end
+            // C
+            8'h43 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;
+			end
+            // D
+            8'h44 : begin
+				HexSeg[0] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+            // E
+            8'h45 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; 
+			end
+            // F
+            8'h46 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // G
+            8'h47 : HexSeg[4] = 1'b1;
+            // H
+            8'h48 : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // I
+            8'h49 : begin
+				HexSeg = 7'b1111111; HexSeg[5] = 1'b0; HexSeg[4] = 1'b0;
+			end
+            // J
+            8'h4A : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+            // K 
+            8'h4B : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // L
+            8'h4C : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;  
+			end
+            // M 
+            8'h4D : begin
+				HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[6] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // N
+            8'h4E : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // O
+            8'h4F : HexSeg[6] = 1'b1;
+            // P
+            8'h50 : begin
+				HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // Q 
+            8'h51 : begin 
+				HexSeg[4] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // R
+            8'h52 : begin
+				HexSeg[5] = 1'b1; HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // S
+            8'h53 : begin 
+				HexSeg[1] = 1'b1; HexSeg[4] = 1'b1;
+			end
+            // T
+            8'h54 : begin 
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1;
+			end
+            // U
+            8'h55 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1;
+			end
+            // V 
+            8'h56 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1;
+			end 
+            // W 
+            8'h57 : begin 
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[4] = 1'b1; HexSeg[2] = 1'b1;
+			end
+            // X 
+            8'h58 : begin 
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // Y
+            8'h59 : begin
+				HexSeg[0] = 1'b1; HexSeg[4] = 1'b1;
+			end
+            // Z 
+            8'h5A : begin
+				HexSeg[5] = 1'b1; HexSeg[2] = 1'b1;
+			end
+
+			// ------Lower Case Letters-----
+			// a
+			8'h61 : HexSeg[3] = 1'b1;
+			// b
+			8'h62 : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1;
+			end
+			// c
+			8'h63 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;
+			end
+			// d
+			8'h64 : begin
+				HexSeg[0] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+			// e
+			8'h65 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; 
+			end
+			// f
+			8'h66 : begin
+				HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// g
+			8'h67 : HexSeg[4] = 1'b1;
+			// h
+			8'h68 : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// i
+			8'h69 : begin
+				HexSeg = 7'b1111111; HexSeg[5] = 1'b0; HexSeg[4] = 1'b0;
+			end
+			// j
+			8'h6A : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[5] = 1'b1; 
+			end
+			// k
+			8'h6B : begin
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// l
+			8'h6C : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[6] = 1'b1;  
+			end
+			// m
+			8'h6D : begin
+				HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[6] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// n
+			8'h6E : begin
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// o
+			8'h6F : HexSeg[6] = 1'b1;
+			// p
+			8'h70 : begin
+				HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// q
+			8'h71 : begin 
+				HexSeg[4] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// r
+			8'h72 : begin
+				HexSeg[5] = 1'b1; HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// s
+			8'h73 : begin 
+				HexSeg[1] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// t
+			8'h74 : begin 
+				HexSeg[0] = 1'b1; HexSeg[1] = 1'b1; HexSeg[2] = 1'b1;
+			end
+			// u
+			8'h75 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1;
+			end
+			// v
+            8'h76 : begin
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[1] = 1'b1; HexSeg[5] = 1'b1;
+			end 
+            // w 
+            8'h77 : begin 
+				HexSeg[0] = 1'b1; HexSeg[6] = 1'b1; HexSeg[4] = 1'b1; HexSeg[2] = 1'b1;
+			end
+            // x 
+            8'h78 : begin 
+				HexSeg[0] = 1'b1; HexSeg[3] = 1'b1;
+			end
+            // y
+            8'h79 : begin
+				HexSeg[0] = 1'b1; HexSeg[4] = 1'b1;
+			end
+            // z 
+            8'h7A : begin
+				HexSeg[5] = 1'b1; HexSeg[2] = 1'b1;
+			end
+
+			// ------Numbers-----
+			// 0
+			8'h30 : begin
+				HexSeg[6] = 1'b1;
+			end
+			// 1
+			8'h31 : begin
+				HexSeg[6] = 1'b1; HexSeg[0] = 1'b1; HexSeg[3] = 1'b1; HexSeg[5] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// 2
+			8'h32 : begin
+				HexSeg[5] = 1'b1; HexSeg[2] = 1'b1;
+			end
+			// 3
+			8'h33 : begin
+				HexSeg[5] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// 4
+			8'h34 : begin
+				HexSeg[0] = 1'b1; HexSeg[4] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// 5
+			8'h35 : begin
+				HexSeg[1] = 1'b1; HexSeg[4] = 1'b1;
+			end
+			// 6
+			8'h36 :HexSeg[1] = 1'b1;
+			// 7
+			8'h37 : begin
+				HexSeg[5] = 1'b1; HexSeg[4] = 1'b1; HexSeg[6] = 1'b1; HexSeg[3] = 1'b1;
+			end
+			// 8
+			8'h38 : HexSeg = 7'd0;
+			// 9
+			8'h39 : HexSeg[4] = 1'b1;
+            default : HexSeg = 7'b1111111;
+        endcase
+    end
+endmodule
+
+
+module lab5_pv(input clk, SW0, SW1, KEY0, SW2, SW3, SW4, output logic [6:0] SevSeg5, SevSeg4, SevSeg3, SevSeg2, SevSeg1, SevSeg0, output logic LED0, LED1, LED2, LED3, LED4, LED5, LED6, LED7);
+
+logic Cout, OF, slow_clk;
+logic [3:0] OPCODE;
+logic [1:0] State;
+logic [7:0] PC, Alu_out, W_reg;
+logic [25:0] count;
+logic [2:0] led_sw;
+assign led_sw = {SW4, SW3, SW2};
+
+logic [7:0] Ascii5, Ascii4, Ascii3, Ascii2, Ascii1, Ascii0;
+
+ASCII27Seg A1(Ascii5, SevSeg5);
+ASCII27Seg A2(Ascii4, SevSeg4);
+ASCII27Seg A3(Ascii3, SevSeg3);
+ASCII27Seg A4(Ascii2, SevSeg2);
+ASCII27Seg A5(Ascii1, SevSeg1);
+ASCII27Seg A6(Ascii0, SevSeg0);
+
+freq_div #(26) f1 (clk, SW0, 26'd50000, count, slow_clk);
+lab5 L1 ((SW1) ? ~KEY0 : slow_clk, SW0, OPCODE, State, PC, Alu_out, W_reg, Cout, OF);
+
+assign {LED7, LED6, LED5, LED4, LED3, LED2, LED1, LED0} = PC;
+
+always_comb begin
+	{Ascii5, Ascii4, Ascii3, Ascii2, Ascii1, Ascii0} = {"nadimp"};
+	case(led_sw)
+		3'b000: {Ascii5, Ascii4, Ascii3, Ascii2, Ascii1, Ascii0} = {"nadimp"};
+	endcase
+end
 endmodule
