@@ -1,4 +1,4 @@
-module mux41 #(parameter size=4)(input [size-1:0] A, B, C, D, input [1:0] sel, output logic [size-1:0] Y);
+module mux41 #(parameter size=8)(input [size-1:0] A, B, C, D, input [1:0] sel, output logic [size-1:0] Y);
 always_comb begin
 	Y = {size{1'b0}};
 	case (sel)
@@ -11,6 +11,158 @@ always_comb begin
 end
 endmodule
 
-module alu();
+module mux16_1 #(parameter size=8)(input [size-1:0] A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, input [3:0] sel, output logic [size-1:0] Y);
+logic [size-1:0] mux_outs [3:0];
+mux41 #(size) m1(A, B, C, D, sel[1:0], mux_outs[0]);
+mux41 #(size) m2(E, F, G, H, sel[1:0], mux_outs[1]);
+mux41 #(size) m3(I, J, K, L, sel[1:0], mux_outs[2]);
+mux41 #(size) m4(M, N, O, P, sel[1:0], mux_outs[3]);
+mux41 #(size) m5(mux_outs[0], mux_outs[1], mux_outs[2], mux_outs[3], sel[3:2], Y);
+endmodule
 
+module add #(parameter size=8) (input [size-1:0] A, B, output logic [size-1:0] sum, output logic cout, OF);
+assign {cout, sum} = {1'b0,A}+{1'b0,B};
+assign OF = A&B&cout&~sum | ~A&~B&~cout&sum;
+endmodule
+
+module sub #(parameter size=8) (input [size-1:0] A, B, output logic [size-1:0] sum, output logic cout, OF);
+assign {cout,sum} = {1'b0, A} + {1'b0,-B};
+assign OF = A&B&cout&~sum | ~A&~B&~cout&sum;
+endmodule
+
+module alu (input [7:0] A, B, input [3:0] RA, RB, input [3:0] OPCODE, output logic [7:0] alu_out, output logic cout, OF);
+
+logic [7:0] add, ldi, sub, adi, mul, div, dec, inc, nor_, nand_, xor_, comp;
+logic [7:0] cmpj, jmp, hlt;
+logic cout_add, of_add, cout_sub, of_sub, cout_adi, of_adi, cout_dec, of_dec, cout_inc, of_inc;
+
+add A1 (A, B, add, cout_add, of_add);
+assign ldi = {RA, RB};
+sub S1 (A, B, sub, cout_sub, of_sub);
+add A2 (A, {4'b0,RB}, adi, cout_adi, of_adi);
+assign mul = A * B;
+assign div = A/B;
+sub S2 (B, 8'd1, dec, cout_dec, of_dec);
+add A3 (B, 8'd1, inc, cout_inc, of_inc);
+assign nor_ = ~(A | B);
+assign nand_ = ~(A & B);
+assign xor_ = A ^ B;
+assign comp = ~B;
+assign cmpj = 8'd0;
+assign jmp = 8'd0;
+assign hlt = 8'd0;
+
+mux16_1 #(8) m1(8'd0, add, ldi, sub, adi, mul, div, dec, inc, nor_, nand_, xor_, comp, cmpj, jmp, hlt, OPCODE, alu_out);
+mux16_1 #(1) m2(1'd0, cout_add, 1'd0, cout_sub, cout_adi, 1'd0, 1'd0, cout_dec, cout_inc, 1'd0, 1'd0, 1'd0, 1'd0, 1'd0, 1'd0, 1'd0, OPCODE, cout);
+mux16_1 #(1) m3(1'd0, of_add, 1'd0, of_sub, of_adi, 1'd0, 1'd0, of_dec, of_inc, 1'd0, 1'd0, 1'd0, 1'd0, 1'd0, 1'd0, 1'd0, OPCODE, OF);
+
+endmodule
+
+module RegFile(input reset, clk, input [3:0] RA, input [3:0] RB, input [3:0] RD, input [3:0] OPCODE, input [1:0] current_state, input [7:0] RF_data_in, output logic [7:0] RF_data_out0, output logic [7:0] RF_data_out1);
+localparam RWB=2'b11;
+logic [7:0] RF [15:0];
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset) begin
+		int i;
+		for (i = 0; i < 16; i = i + 1) begin 
+			RF[i] <=8'b0;
+		end
+	end
+	else begin
+		if (current_state == RWB) begin
+			RF[RD] <= RF_data_in;
+		end
+	end
+end
+assign RF_data_out0 = RF[RA];
+assign RF_data_out1 = RF[RB];
+endmodule
+
+module ROM(input [7:0] PC, output logic [15:0] IR);
+logic [15:0] mem [20:0];
+assign mem[0] = 16'h2000;
+assign mem[1] = 16'h2011;
+assign mem[2] = 16'h2002;
+assign mem[3] = 16'h20A3;
+assign mem[4] = 16'hD236;
+assign mem[5] = 16'h1014;
+assign mem[6] = 16'h4100;
+assign mem[7] = 16'h4401;
+assign mem[8] = 16'h8022;
+assign mem[9] = 16'hE040;
+assign mem[10] = 16'h4405;
+assign mem[11] = 16'h5536;
+assign mem[12] = 16'h6637;
+assign mem[13] = 16'h3538;
+assign mem[14] = 16'h4329; 
+assign mem[15] = 16'h709A;
+assign mem[16] = 16'h70AB; 
+assign mem[17] = 16'hBB8C; 
+assign mem[18] = 16'h9D8E;
+assign mem[19] = 16'hC0EF; 
+assign mem[20] = 16'hF000; 
+assign IR = mem[PC];
+endmodule
+
+// mcu control block
+module Dreg #(parameter size=8)(input clk, reset, input [size-1:0] D, output logic [size-1:0] Q);
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		Q <= {size{1'b0}};
+	else
+		Q <= D;
+end
+endmodule
+
+module mcu_control(input clk, reset, input [7:0] PC, input [3:0] OPCODE, input [3:0] RA, RB, RD, input [7:0] A, B, output logic [7:0] new_pc, output logic [1:0] state);
+localparam IF=2'b00, FD=2'b01, EX=2'b10, RWB=2'b11;
+logic [1:0] next_state;
+Dreg #(2) D1 (clk, reset, next_state, state);
+mux41 #(2) M1 (FD, EX, RWB, IF, state, next_state);
+
+always_comb begin
+	new_pc = PC;
+	if (state == RWB) begin
+		if (OPCODE == 4'b1110) 
+			new_pc = {RA, RB};
+		else if (OPCODE == 4'b1101)
+			if (A >= B)
+				new_pc = PC + {4'd0, RD};
+			else 
+				new_pc = PC + {7'd0, 1'b1};
+		else 
+			new_pc = PC + {7'd0, 1'b1};
+	end
+end
+
+endmodule
+
+// TODO Implement Halt and Finish Testing
+module lab5(input clk, reset, output logic [3:0] OPCODE, output logic [1:0] State, output logic [7:0] PC, Alu_out, W_reg, output logic Cout, OF);
+localparam IF=2'b00;
+
+logic [3:0] RA, RB, RD;
+logic [7:0] A, B, next_PC;
+logic [15:0] IR_, IR;
+ROM R1(PC, IR);
+
+// IF
+//Dreg #(16) ir (clk, reset, (State==IF) ? IR_:IR, IR);
+
+assign OPCODE = IR[15:12];
+assign RA = IR[11:8];
+assign RB = IR[7:4];
+assign RD = IR[3:0];
+
+// FD
+RegFile RF (reset, clk, RA, RB, RD, OPCODE, State, W_reg, A, B);
+
+// EX
+alu A1 (A, B, RA, RB, OPCODE, Alu_out, Cout, OF);
+
+// RWB
+Dreg #(8) w_reg(clk, reset, Alu_out, W_reg);
+Dreg #(8) pc(clk, reset, next_PC, PC);
+
+mcu_control MC (clk, reset, PC, OPCODE, RA, RB, RD, A, B, next_PC, State);
 endmodule
