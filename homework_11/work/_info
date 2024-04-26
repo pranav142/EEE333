@@ -1,0 +1,277 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/pknad/Documents/EEE333_verilog/quiz4_study
+vFilter_ma
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 DXx4 work 18 homework11_sv_unit 0 22 mFH6_G[OBcMT2Tck63zYX2
+Z2 !s110 1713850945
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+!i10b 1
+!s100 ^eiYbHNUcRI7eWDG?I?iA0
+InBO7U`Jmn9C]hfc1Yz0Rf0
+Z4 !s105 homework11_sv_unit
+S1
+Z5 dC:/Users/pknad/Documents/EEE333_verilog/homework_11
+Z6 w1713850943
+Z7 8C:\Users\pknad\Documents\EEE333_verilog\homework_11\homework11.sv
+Z8 FC:\Users\pknad\Documents\EEE333_verilog\homework_11\homework11.sv
+!i122 38
+L0 18 12
+Z9 OV;L;2020.1;71
+31
+Z10 !s108 1713850945.000000
+Z11 !s107 C:\Users\pknad\Documents\EEE333_verilog\homework_11\homework11.sv|
+Z12 !s90 -reportprogress|300|-work|work|-sv|-stats=none|C:\Users\pknad\Documents\EEE333_verilog\homework_11\homework11.sv|
+!i113 1
+Z13 o-work work -sv
+Z14 tCvgOpt 0
+n@filter_ma
+vfilterf_tb
+R0
+R1
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 RMCzJW[`97ASX4A9idboJ3
+IhL_4K1E37BOMOD:gShfX;2
+R4
+S1
+R5
+R6
+R7
+R8
+!i122 38
+L0 32 35
+R9
+31
+R10
+R11
+R12
+!i113 1
+R13
+R14
+vFlipFlopW
+R0
+R1
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 P8OPQBPJ8b>W8mcIUZ0c^1
+IWW=@GTX=z2XY7dS:5g:2;3
+R4
+S1
+R5
+R6
+R7
+R8
+!i122 38
+L0 68 8
+R9
+31
+R10
+R11
+R12
+!i113 1
+R13
+R14
+n@flip@flop@w
+Xhomework11_sv_unit
+R0
+R2
+VmFH6_G[OBcMT2Tck63zYX2
+r1
+!s85 0
+!i10b 1
+!s100 ?:cAK<gZK>o5G9i11d[n21
+ImFH6_G[OBcMT2Tck63zYX2
+!i103 1
+S1
+R5
+R6
+R7
+R8
+!i122 38
+L0 1 0
+R9
+31
+R10
+R11
+R12
+!i113 1
+R13
+R14
+vLFSR
+R0
+R1
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 SM7;PndAbdDenln@X0AG_0
+I8X0fh4BDYi598ZOn2GVoD3
+R4
+S1
+R5
+R6
+R7
+R8
+!i122 38
+L0 81 8
+R9
+31
+R10
+R11
+R12
+!i113 1
+R13
+R14
+n@l@f@s@r
+vLFSR_tb
+R0
+R1
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 630QZQ^PG8XhDNbFDmMZo2
+I2^@b=V>R?5:zi4SR]A3U=0
+R4
+S1
+R5
+R6
+R7
+R8
+!i122 38
+L0 91 19
+R9
+31
+R10
+R11
+R12
+!i113 1
+R13
+R14
+n@l@f@s@r_tb
+vLSFR_tb
+R0
+DXx4 work 18 homework11_sv_unit 0 22 PYSD]4HUaZES3D`Ii?8<L2
+!s110 1713849211
+R3
+r1
+!s85 0
+!i10b 1
+!s100 fG9ZB;VEizaL2;:I=Wg7T1
+IZGQB6<zc_bGbmQS2Og=gn1
+R4
+S1
+R5
+w1713849209
+R7
+R8
+!i122 28
+L0 91 17
+R9
+31
+!s108 1713849211.000000
+R11
+R12
+!i113 1
+R13
+R14
+n@l@s@f@r_tb
+vMuxW
+R0
+R1
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 J^kVO]m>]bdBgl?;?AN<D0
+I==6BT=0G9obYOJZ@PHhT42
+R4
+S1
+R5
+R6
+R7
+R8
+!i122 38
+L0 77 3
+R9
+31
+R10
+R11
+R12
+!i113 1
+R13
+R14
+n@mux@w
+vShiftregW
+R0
+!s110 1713844839
+!i10b 1
+!s100 n;EFl38[kLAnH[UiJD0mY2
+!s11b Dg1SIo80bB@j0V0VzS_@n1
+I2KZF>0MNEc_Z1b3Y3nWKS0
+R3
+S1
+R5
+w1713844766
+R7
+R8
+!i122 1
+L0 1 15
+R9
+r1
+!s85 0
+31
+!s108 1713844839.000000
+R11
+R12
+!i113 1
+R13
+R14
+n@shiftreg@w
+vShiftRegWd
+R0
+R1
+R2
+R3
+r1
+!s85 0
+!i10b 1
+!s100 M[Md6jO:[<MWdn>F0f0OI1
+ISFbQPCl[YR696;gLU5i1e0
+R4
+S1
+R5
+R6
+R7
+R8
+!i122 38
+L0 5 12
+R9
+31
+R10
+R11
+R12
+!i113 1
+R13
+R14
+n@shift@reg@wd

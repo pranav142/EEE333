@@ -1,0 +1,92 @@
+|LFSR
+clk => clk.IN1
+reset => reset.IN1
+load => load.IN1
+seed[0] => seed[0].IN1
+seed[1] => seed[1].IN1
+seed[2] => seed[2].IN1
+seed[3] => seed[3].IN1
+seed[4] => seed[4].IN1
+seed[5] => seed[5].IN1
+seed[6] => seed[6].IN1
+seed[7] => seed[7].IN1
+RandomNumb[0] <= RandomNumb[0].DB_MAX_OUTPUT_PORT_TYPE
+RandomNumb[1] <= RandomNumb[1].DB_MAX_OUTPUT_PORT_TYPE
+RandomNumb[2] <= RandomNumb[2].DB_MAX_OUTPUT_PORT_TYPE
+RandomNumb[3] <= RandomNumb[3].DB_MAX_OUTPUT_PORT_TYPE
+RandomNumb[4] <= RandomNumb[4].DB_MAX_OUTPUT_PORT_TYPE
+RandomNumb[5] <= RandomNumb[5].DB_MAX_OUTPUT_PORT_TYPE
+RandomNumb[6] <= RandomNumb[6].DB_MAX_OUTPUT_PORT_TYPE
+RandomNumb[7] <= FlipFlopW:FF8.port3
+
+
+|LFSR|FlipFlopW:FF8
+clk => qout[0]~reg0.CLK
+clk => qout[1]~reg0.CLK
+clk => qout[2]~reg0.CLK
+clk => qout[3]~reg0.CLK
+clk => qout[4]~reg0.CLK
+clk => qout[5]~reg0.CLK
+clk => qout[6]~reg0.CLK
+clk => qout[7]~reg0.CLK
+rstn => qout[0]~reg0.ACLR
+rstn => qout[1]~reg0.ACLR
+rstn => qout[2]~reg0.ACLR
+rstn => qout[3]~reg0.ACLR
+rstn => qout[4]~reg0.ACLR
+rstn => qout[5]~reg0.ACLR
+rstn => qout[6]~reg0.ACLR
+rstn => qout[7]~reg0.ACLR
+D[0] => qout[0]~reg0.DATAIN
+D[1] => qout[1]~reg0.DATAIN
+D[2] => qout[2]~reg0.DATAIN
+D[3] => qout[3]~reg0.DATAIN
+D[4] => qout[4]~reg0.DATAIN
+D[5] => qout[5]~reg0.DATAIN
+D[6] => qout[6]~reg0.DATAIN
+D[7] => qout[7]~reg0.DATAIN
+qout[0] <= qout[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qout[1] <= qout[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qout[2] <= qout[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qout[3] <= qout[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qout[4] <= qout[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qout[5] <= qout[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qout[6] <= qout[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+qout[7] <= qout[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|LFSR|MuxW:MM8
+Qa[0] => qout.DATAB
+Qa[1] => qout.DATAB
+Qa[2] => qout.DATAB
+Qa[3] => qout.DATAB
+Qa[4] => qout.DATAB
+Qa[5] => qout.DATAB
+Qa[6] => qout.DATAB
+Qa[7] => qout.DATAB
+Qb[0] => qout.DATAA
+Qb[1] => qout.DATAA
+Qb[2] => qout.DATAA
+Qb[3] => qout.DATAA
+Qb[4] => qout.DATAA
+Qb[5] => qout.DATAA
+Qb[6] => qout.DATAA
+Qb[7] => qout.DATAA
+select => qout.OUTPUTSELECT
+select => qout.OUTPUTSELECT
+select => qout.OUTPUTSELECT
+select => qout.OUTPUTSELECT
+select => qout.OUTPUTSELECT
+select => qout.OUTPUTSELECT
+select => qout.OUTPUTSELECT
+select => qout.OUTPUTSELECT
+qout[0] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+qout[1] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+qout[2] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+qout[3] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+qout[4] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+qout[5] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+qout[6] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+qout[7] <= qout.DB_MAX_OUTPUT_PORT_TYPE
+
+
