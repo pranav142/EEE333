@@ -22,12 +22,12 @@ endmodule
 
 module add #(parameter size=8) (input [size-1:0] A, B, output logic [size-1:0] sum, output logic cout, OF);
 assign {cout, sum} = {1'b0,A}+{1'b0,B};
-assign OF = A&B&cout&~sum | ~A&~B&~cout&sum;
+assign OF = A[size-1]&B[size-1]&cout&~sum[size-1] | ~A[size-1]&~B[size-1]&~cout&sum[size-1];
 endmodule
 
 module sub #(parameter size=8) (input [size-1:0] A, B, output logic [size-1:0] sum, output logic cout, OF);
 assign {cout,sum} = {1'b0, A} + {1'b0,-B};
-assign OF = A&B&cout&~sum | ~A&~B&~cout&sum;
+assign OF = A[size-1]&B[size-1]&cout&~sum[size-1] | ~A[size-1]&~B[size-1]&~cout&sum[size-1];
 endmodule
 
 module alu (input [7:0] A, B, input [3:0] RA, RB, input [3:0] OPCODE, output logic [7:0] alu_out, output logic cout, OF);
@@ -61,16 +61,27 @@ endmodule
 module RegFile(input reset, clk, input [3:0] RA, input [3:0] RB, input [3:0] RD, input [3:0] OPCODE, input [1:0] current_state, input [7:0] RF_data_in, output logic [7:0] RF_data_out0, output logic [7:0] RF_data_out1);
 localparam IF=2'b00, FD=2'b01, EX=2'b10, RWB=2'b11;
 logic [7:0] RF [15:0];
-integer i;
 
 always_ff @ (posedge clk or posedge reset) begin
 	if (reset) begin
 		RF_data_out0 <= 8'd0;
 		RF_data_out1 <= 8'd0;
-
-		for (i = 5'd0; i < 5'd16; i = i + 5'd1) begin 
-			RF[i] <=8'b0;
-		end
+		RF[15] <= 8'd0;
+		RF[14] <= 8'd0;
+		RF[13] <= 8'd0;
+		RF[12] <= 8'd0;
+		RF[11] <= 8'd0;
+		RF[10] <= 8'd0;
+		RF[9] <= 8'd0;
+		RF[8] <= 8'd0;
+		RF[7] <= 8'd0;
+		RF[6] <= 8'd0;
+		RF[5] <= 8'd0;
+		RF[4] <= 8'd0;
+		RF[3] <= 8'd0;
+		RF[2] <= 8'd0;
+		RF[1] <= 8'd0;
+		RF[0] <= 8'd0;
 	end
 	else begin
 		if (current_state == IF) begin
@@ -472,8 +483,10 @@ module ASCII27Seg(input [7:0] AsciiCode, output reg [6:0] HexSeg);
     end
 endmodule
 
-module to_Ascii(input [7:0] num, output logic  hi[7:0], med[7:0], lo[7:0]);
-
+module to_Ascii(input [7:0] num, output logic [7:0] hi, med, lo);
+assign hi = num / 8'd100 + 8'h30;
+assign med = (num % 8'd100) / 8'd10 + 8'h30;
+assign lo = (num % 8'd100) % 8'd10 + 8'h30;
 endmodule
 
 module lab5_pv(input clk, SW0, SW1, KEY0, SW2, SW3, SW4, output logic [6:0] SevSeg5, SevSeg4, SevSeg3, SevSeg2, SevSeg1, SevSeg0, output logic LED0, LED1, LED2, LED3, LED4, LED5, LED6, LED7);
@@ -487,6 +500,7 @@ logic [2:0] led_sw;
 assign led_sw = {SW4, SW3, SW2};
 
 logic [7:0] Ascii5, Ascii4, Ascii3, Ascii2, Ascii1, Ascii0;
+logic [7:0] PC_hi, PC_med, PC_lo, OP_hi, OP_med, OP_lo, W_hi, W_med, W_lo, A_hi, A_med, A_lo;
 
 ASCII27Seg A1(Ascii5, SevSeg5);
 ASCII27Seg A2(Ascii4, SevSeg4);
@@ -495,7 +509,12 @@ ASCII27Seg A4(Ascii2, SevSeg2);
 ASCII27Seg A5(Ascii1, SevSeg1);
 ASCII27Seg A6(Ascii0, SevSeg0);
 
-freq_div #(26) f1 (clk, SW0, 26'd50000, count, slow_clk);
+to_Ascii T1(PC, PC_hi, PC_med, PC_lo);
+to_Ascii T2({4'b0, OPCODE}, OP_hi, OP_med, OP_lo);
+to_Ascii T3(W_reg, W_hi, W_med, W_lo);
+to_Ascii T4(Alu_out, A_hi, A_med, A_lo);
+
+freq_div #(26) f1 (clk, SW0, 26'd12500000, count, slow_clk);
 lab5 L1 ((SW1) ? ~KEY0 : slow_clk, SW0, OPCODE, State, PC, Alu_out, W_reg, Cout, OF);
 
 assign {LED7, LED6, LED5, LED4, LED3, LED2, LED1, LED0} = PC;
@@ -504,6 +523,46 @@ always_comb begin
 	{Ascii5, Ascii4, Ascii3, Ascii2, Ascii1, Ascii0} = {"nadimp"};
 	case(led_sw)
 		3'b000: {Ascii5, Ascii4, Ascii3, Ascii2, Ascii1, Ascii0} = {"nadimp"};
+		3'b110: begin
+			Ascii5 = 8'h30;
+			Ascii4 = 8'h30;
+			Ascii3 = 8'h30;
+			Ascii2 = PC_hi;
+			Ascii1 = PC_med;
+			Ascii0 = PC_lo;
+		end
+		3'b101: begin
+			Ascii5 = 8'h30;
+			Ascii4 = 8'h30;
+			Ascii3 = 8'h30;
+			Ascii2 = W_hi;
+			Ascii1 = W_med;
+			Ascii0 = W_lo;
+		end
+		3'b011: begin
+			Ascii5 = 8'h30;
+			Ascii4 = 8'h30;
+			Ascii3 = 8'h30;
+			Ascii2 = A_hi;
+			Ascii1 = A_med;
+			Ascii0 = A_lo;
+		end
+		3'b111: begin
+			Ascii5 = 8'h30;
+			Ascii4 = 8'h30;
+			Ascii3 = 8'h30;
+			Ascii2 = OP_hi;
+			Ascii1 = OP_med;
+			Ascii0 = OP_lo;
+		end
+		default: begin
+			Ascii5 = 8'h0;
+			Ascii4 = 8'h0;
+			Ascii3 = 8'h0;
+			Ascii2 = 8'h0;
+			Ascii1 = 8'h0;
+			Ascii0 = 8'h0;
+		end
 	endcase
 end
 endmodule

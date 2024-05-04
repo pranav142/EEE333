@@ -1,0 +1,211 @@
+a) 
+1. True
+2. a 1 bit wire
+3. 1 all verilog code compiles under system verilog
+4. a parameters are local to a module and cant change, constants are fixed values, and variables store data that can be changed
+5. 
+module problem(input a, b, c, d, output F);
+wire t1, t2;
+and A1 (t1, a, b);
+and A2 (t2, c, d);
+or A3 (F, t1, t2);
+endmodule
+6. An abstraction is a black box that hides away the inner workings of a system and allow the user to only deal with inputs/outputs
+7. F = A'CD + A'BC' + AC'D + BD;
+8. Q* = S + R'Q
+9. Q* = JQ' + K'Q
+10.
+module JK_ff(input clk, reset, J, K, output Q);
+always_ff @ (posedge clk or posedge reset)
+	if (reset)
+		Q <= 1'b0;
+	else 
+		Q <= J&~Q | ~K&Q;
+endmodule
+
+2. a) 
+module Dreg #(parameter size=3)(input clk, reset, input [size-1:0] D, output logic [size-1:0] Q);
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		Q <= {n{1'b0}};
+	else 
+		Q <= D;
+end
+endmodule
+
+b)
+module mux41 #(parameter size=3)(input [size-1:0] A, B, C, D, input [1:0] sel, output logic [size-1:0] F);
+always_comb begin
+F = {size{1'b0}};
+case (sel)
+	2'b00: F = A;	
+	2'b01: F = B;
+	2'b10: F = C;
+	2'b11: F = D;
+	default: F = {size{1'b0}};
+endcase
+end
+endmodule
+
+3. 
+a) b) c)
+module FSM(input clk, reset, x, output logic Z, output logic [1:0] state);
+localparam S0 = 2'b00, S1 = 2'b01, S2 = 2'b10, S3 = 2'b11;
+logic [1:0] next_state;
+
+Dreg #(2) D1(clk, reset, next_state, state);
+mux41 #(2) M1((x) ? S1 : S0, (x) ? S2 : S0, (x) ? S2 : S3, (x) ? S1 : S0, state, next_state);
+mux41 #(1) M2(1'b0, 1'b0, 1'b0, 1'b1, state, Z);
+endmodule
+
+4.
+module FSM2(input clk, reset, x, output logic Z, output logic [3:0] state);
+localparam S0 = 4'b0001, S1 = 4'b0010, S2 = 4'b0100, S3 = 4'b1000;
+logic [3:0] next_state;
+
+Dreg #(4) D1(clk, reset, next_state, state);
+
+always_comb begin
+	unique casez 
+		4'b0001 : begin next_state = (x) ? S1 : S0; Z = 1'b0; end 
+		4'b0010 : begin next_state = (x) ? S2 : S0; Z = 1'b0; end 
+		4'b0100 : begin next_state = (x) ? S2 : S3; Z = 1'b0; end 
+		4'b1000 : begin next_state = (x) ? S1 : S0; Z = 1'b1; end 
+	endcase
+end
+endmodule
+
+5.
+`timescale 1ns/1ps
+module fsm_tb();
+logic [11:0] X;
+logic clk, reset, x, Z;
+logic [3:0] state; 
+integer i;
+
+assign X = 12b'000110111000.
+
+FSM2 F1 (clk, reset, x, Z, state);
+
+initial begin
+reset=1'b1; clk=1'b1; x=1'b0; #5;
+reset=1'b0; clk=1'b0; #5;
+
+for (i = 0; i < 12; i = i + 1) begin
+	x = X[i];
+	clk = ~clk; #5;
+	clk = ~clk; #5;
+end
+end 
+endmodule
+
+6. 
+a)
+module mux21 #(parameter size=4) (input [size-1:0] A, B, input S, output logic [size-1:0] F);
+assign F = (S) ? A : B;
+endmodule
+
+b)
+module Dreg #(parameter size=4) (input [size-1:0] D, input clk, reset, output logic [size-1:0] Q, Qn);
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		Q <= {size{1'b0}};
+	else 
+		Q <= D;
+end
+assign Qn = ~Q;
+endmodule
+
+C)
+module counter #(parameter size=4) (input [size-1:0] MaxCount, input clk, reset, output logic [size-1:0] Count);
+logic [size-1:0] next_count, Qn;
+Dreg #(size) D1 (next_count, clk, reset, Count, Qn);
+mux21 #(size) D2 (1'b0; (Count >= MaxCount) ? {size{1'b0}} : (count + {{size{1'b0}}, 1'b1}), reset, next_count);
+endmodule
+
+7.
+a) 
+module Shiftreg #(parameter size = 4)(input clk, reset, input [size-1:0]  A, input Loadn, output logic [2*size-1:0] Y_shift);
+localparam zero = {size{1'b0}};
+logic [2*size-1:0] Y;
+
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		Y <= {2*size{1'b0}};
+	else 
+		Y <= Y_shift;
+end
+
+always_comb begin
+	Y_shift = {size{1'b0}};
+	case (Loadn)
+		1'b0: Y_shift = {zero, A};
+		1'b1: Y_shift = Y <<< 1;
+		default: Y_shift = {2*size{1'b0}};
+	endcase
+end
+endmodule
+
+
+module HA(input A, B, output sum, cout); 
+assign sum = A^B;
+assign cout = A&B;
+endmodule
+
+module full_adder(input A, B, Cin, output sum, cout);
+wire s1, c1, c2;
+HA ha1 (A, B, s1, c1);
+HA ha2 (s1, Cin, sum, c2); 
+assign cout = c1 | c2;
+endmodule
+
+module rca #(parameter size=(input [3:0]a,b, input cin,output [3:0]sum, output cout);
+
+wire [size:0] c; 
+
+genvar i;
+
+assign c[0] = cin;
+
+generate
+    for (i = 0; i < size; i = i + 1) begin : adder_loop
+        full_adder fa (a[i]b[i],c[i],sum[i],c[i+1]);
+    end
+endgenerate
+
+assign cout = c[size];
+                
+endmodule
+
+b)
+module mux21 #(parameter size=4) (input [size-1:0] A, B, input S, output logic [size-1:0] Y);
+assign Y = S ? A:B;
+endmodule
+
+module Register #(parameter size = 4) (input clk, reset, input [size-1:0] D, output logic [size-1:0] Q);
+always_ff @ (posedge clk or posedge reset) begin
+	if (reset)
+		Q <= {size{1'b0}};
+	else
+		Q <= D;
+end
+endmodule
+
+c)
+module multiplier #(parameter size=4) (input [size-1:0] A, B, input clk, reset, output [2*size-1:0] product);
+localparam one = {{size-1{1'b0}}, 1'b1}, zero = {size*2{1'b0}};
+logic [size-1:0] i;
+logic loadn, cout_, of_;
+logic [size*2-1:0] shift_A, PSum, ASum, RSum;
+
+assign loadn = (i > 1'b0) ? 1'b1:1'b0;
+
+Register #(size) IND1 (clk, reset, i+one, i);
+Shiftreg #(size) SR1 (clk, reset, A, loadn, shift_A);
+mux21 #(size*2) M1 (shift_A, zero, B[i], PSum);
+RA #(size*2) R1 (ASum, PSum, RSum, cout_, of_);
+Register #(size*2) AR1 (clk, reset, RSum, ASum);
+
+assign product = ASum;
+endmodule
+

@@ -1,0 +1,237 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "SevSeg5[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg5[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg5[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg5[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg5[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg5[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg5[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg4[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg2[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg2[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg2[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg2[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg2[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg2[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg1[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg1[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg1[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg1[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg1[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg1[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg1[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg0[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg0[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg0[2]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg0[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg0[4]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg0[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SevSeg0[6]",
+					"strict" : false
+				},
+				{
+					"name" : "LED0",
+					"strict" : false
+				},
+				{
+					"name" : "LED1",
+					"strict" : false
+				},
+				{
+					"name" : "LED2",
+					"strict" : false
+				},
+				{
+					"name" : "LED3",
+					"strict" : false
+				},
+				{
+					"name" : "LED4",
+					"strict" : false
+				},
+				{
+					"name" : "LED5",
+					"strict" : false
+				},
+				{
+					"name" : "LED6",
+					"strict" : false
+				},
+				{
+					"name" : "LED7",
+					"strict" : false
+				},
+				{
+					"name" : "SW2",
+					"strict" : false
+				},
+				{
+					"name" : "SW4",
+					"strict" : false
+				},
+				{
+					"name" : "SW3",
+					"strict" : false
+				},
+				{
+					"name" : "SW0",
+					"strict" : false
+				},
+				{
+					"name" : "KEY0",
+					"strict" : false
+				},
+				{
+					"name" : "SW1",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at lab5.sv(159): object "W_reg" differs only in case from object "w_reg" in the same scope File: C:/Users/pknad/Documents/EEE333_verilog/lab5/lab5.sv Line: 159
+Info (10281): Verilog HDL Declaration information at lab5.sv(159): object "PC" differs only in case from object "pc" in the same scope File: C:/Users/pknad/Documents/EEE333_verilog/lab5/lab5.sv Line: 159
